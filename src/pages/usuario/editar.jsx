@@ -9,7 +9,7 @@ import { EDITAR_USUARIO } from 'graphql/usuario/mutations';
 import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
-import { Enum_EstadoUsuario } from 'utils/enums';
+import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 
 const EditarUsuario = () => {
     const { form, formData, updateFormData } = useFormData(null);
@@ -61,45 +61,67 @@ const EditarUsuario = () => {
                 onSubmit={submitForm}
                 onChange={updateFormData}
                 ref={form}
-                className='flex flex-col items-center justify-center'
+                className='row g-3  items-center justify-center '
             >
+                <div className="col-md-3">
+                    <Input
+                        label='Nombre del usuario:'
+                        type='text'
+                        name='nombre'
+                        defaultValue={queryData.Usuario.nombre}
+                        required={true}
+                    />
+                </div>
+                <div className="col-md-3">
+                    <Input
+                        label='Apellido del usuario:'
+                        type='text'
+                        name='apellido'
+                        defaultValue={queryData.Usuario.apellido}
+                        required={true}
+                    />
+                </div>
+                <div className="col-md-3">
                 <Input
-                    label='Nombre de la persona:'
-                    type='text'
-                    name='nombre'
-                    defaultValue={queryData.Usuario.nombre}
-                    required={true}
-                />
-                <Input
-                    label='Apellido de la persona:'
-                    type='text'
-                    name='apellido'
-                    defaultValue={queryData.Usuario.apellido}
-                    required={true}
-                />
-                <Input
-                    label='Correo de la persona:'
+                    label='Correo del usuario:'
                     type='email'
                     name='correo'
                     defaultValue={queryData.Usuario.correo}
                     required={true}
                 />
+                </div>
+                <div className="col-md-3">
                 <Input
-                    label='Identificación de la persona:'
+                    label='Identificación del usuario:'
                     type='text'
                     name='identificacion'
                     defaultValue={queryData.Usuario.identificacion}
                     required={true}
                 />
+                </div>
+                <div className="col-md-3">
                 <DropDown
-                    label='Estado de la persona:'
+                    label='Estado del usuario:'
                     name='estado'
                     defaultValue={queryData.Usuario.estado}
                     required={true}
                     options={Enum_EstadoUsuario}
+                    disabled={false}
                 />
-                <span>Rol del usuario: {queryData.Usuario.rol}</span>
-                <ButtonLoading
+                </div>
+                <div className="col-md-3">
+                <DropDown
+                    label='Rol del usuario:'
+                    name='rol'
+                    defaultValue={queryData.Usuario.rol}
+                    required={true}
+                    options={Enum_Rol}
+                    disabled={true}
+                />
+                </div>
+                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
+                
+                <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading}
                     text='Confirmar'

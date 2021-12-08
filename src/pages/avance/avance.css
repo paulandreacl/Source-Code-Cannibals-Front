@@ -1,0 +1,74 @@
+body{
+    background-color: #e2d6f2;
+}
+.tabla_basedatos{
+    margin-top: 20px;
+}
+.btn-primary{
+    color: black;
+    background-color: #773cc0;
+    border-color: #26133e;
+} 
+.btn-primary:hover{color:black;background-color:#6b36ae;border-color:#26133e}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus{color:black;background-color:#502882;border-color:#26133e;
+    box-shadow:0 0 0 .25rem #9566cf}
+.btn-check:active+.btn-primary,
+.btn-check:checked+.btn-primary,
+.btn-primary.active,
+.btn-primary:active,.show>.btn-primary
+.dropdown-toggle{color:black;background-color:#391d5d;border-color:#26133e}
+.btn-check:active+
+.btn-primary:focus,
+.btn-check:checked+.btn-primary:focus,
+.btn-primary.active:focus,
+.btn-primary:active:focus,.show>
+.btn-primary.dropdown-toggle:focus{box-shadow:0 0 0 .25rem #af8bdb}
+.btn-primary.disabled,
+.btn-primary:disabled{color:black;background-color:#af8bdb;border-color:#26133e} 
+
+
+
+.accordion-button{
+    background-color: #fff;
+    color: black;
+    border-color:#000000;
+}
+.accordion-item{
+    background-color: #fff;
+}
+.accordion-button:not(.collapsed){
+    background-color: #9566cf;
+    color: black;
+}
+.accordion-button:hover{
+    background-color:#8853c9 ;
+}
+.accordion-button:focus{z-index:3;border-color:#000000;outline:0;box-shadow:0 0 0 .25rem #aa85d9}
+
+#boton-filtro{
+/*     position: absolute;
+    right:    0px;
+    bottom:   0px;
+} */
+padding-top: 32px;
+}
+
+
+.form-control:focus{color:#212529;background-color:#fff;border-color:black;outline:0;box-shadow:0 0 0 .25rem #bc9ee0}
+
+.form-select:valid:focus{border-color:black;box-shadow:0 0 0 .25rem #bc9ee0}
+/* .form-select:focus{border-color:#86b7fe;outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)} */
+/* .form-check-input:focus{border-color:#86b7fe;outline:0;box-shadow:0 0 0 .25rem crimson} */
+/* .form-check-input:checked{background-color:crimson;border-color:crimson} */
+
+.table-green-titles{
+    background-color: #6734a7;
+    color: #f8f5fc;
+}
+
+.table-green-content{
+    background-color: #c0a4e2;
+
+}

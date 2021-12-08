@@ -1,16 +1,16 @@
 import React/* , { useEffect } */ from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_USUARIOS } from 'graphql/usuario/queries';
+import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
 import { Link } from 'react-router-dom';
-import './usuario.css'
+import './inscripcion.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
-const IndexUsuarios = () => {
-  const { data, error, loading } = useQuery(GET_USUARIOS);
+const IndexInscripciones = () => {
+  const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
 
   if (loading) return <div>Loading...</div>;
 
@@ -24,14 +24,14 @@ const IndexUsuarios = () => {
           <h2 className="accordion-header" id="headingOne">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
               aria-expanded="false" aria-controls="collapseOne">
-              Agregar Usuario
+              Agregar Inscripción
             </button>
           </h2>
           <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne"
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
 
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Usuario</h1>
+            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Inscripción</h1>
             <form
                 /* onSubmit={submitForm}
                 onChange={updateFormData}
@@ -89,8 +89,7 @@ const IndexUsuarios = () => {
                     disabled={false}
                 />
                 </div>
-                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
-                
+                                
                 <ButtonLoading className="btn-primary"
                     /* disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading} */
@@ -108,7 +107,7 @@ const IndexUsuarios = () => {
           <h2 className="accordion-header" id="headingTwo">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
               aria-expanded="false" aria-controls="collapseTwo">
-              Consultar Usuarios
+              Consultar Inscripciones
             </button>
           </h2>
           <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -118,28 +117,28 @@ const IndexUsuarios = () => {
               <table className='table table-hover tabla_basedatos'>
                 <thead className="table-green-titles">
                   <tr>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Correo</th>
-                    <th>Identificación</th>
-                    <th>Rol</th>
+                    <th>Proyecto</th>
+                    <th>Estudiante</th>
                     <th>Estado</th>
+                    <th>Ingreso</th>
+                    <th>Egreso</th>
+                    
                     <th>Editar</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data &&
-                    data.Usuarios.map((u) => {
+                    data.Inscripciones.map((u) => {
                       return (
                         <tr key={u._id}>
-                          <td>{u.nombre}</td>
-                          <td>{u.apellido}</td>
-                          <td>{u.correo}</td>
-                          <td>{u.identificacion}</td>
-                          <td>{u.rol}</td>
+                          <td>{u.proyecto.nombre}</td>
+                          <td>{u.estudiante.nombre+ " "+ u.estudiante.apellido}</td>
                           <td>{u.estado}</td>
+                          <td>{u.fechaIngreso}</td>
+                          <td>{u.fechaEgreso}</td>
+                          
                           <td>
-                            <Link to={`/usuarios/editar/${u._id}`}>
+                            <Link to={`/inscripciones/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
@@ -162,4 +161,4 @@ const IndexUsuarios = () => {
   );
 };
 
-export default IndexUsuarios
+export default IndexInscripciones
