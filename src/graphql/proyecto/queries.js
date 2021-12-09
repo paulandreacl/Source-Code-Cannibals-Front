@@ -34,6 +34,25 @@ const GET_PROYECTO = gql`
             _id
             nombre
             presupuesto
+            fechaInicio
+    fechaFin
+    estado
+    fase
+    lider {
+      _id
+      nombre
+      apellido
+      identificacion
+      correo
+      rol
+      estado
+    }
+    objetivos {
+      _id
+      descripcion
+      tipo
+    }
+  
         }
     }
 `;

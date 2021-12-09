@@ -21,7 +21,7 @@ const DetallesProyecto = () => {
     } = useQuery(GET_PROYECTO, {
         variables: { _id }
     });
-
+    console.log(queryData)
     const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_PROYECTO);
 
@@ -86,7 +86,7 @@ const DetallesProyecto = () => {
                     label='Fecha Inicio:'
                     type='text'
                     name='fechaInicio'
-                    defaultValue={queryData.Proyecto.fechaInicio+ 'hola'}
+                    defaultValue={queryData.Proyecto.fechaInicio}
                     required={true}
                 />
                 </div>
@@ -109,6 +109,37 @@ const DetallesProyecto = () => {
                     
                 />
                 </div>
+                <div>
+                <table className='table table-hover tabla_basedatos'>
+                <thead className="table-green-titles">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    
+                    <th>Editar</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {queryData &&
+                    queryData.Proyecto.objetivos.map((u) => {
+                      return (
+                        <tr key={u._id}>
+                          <td>{u.descripcion}</td>
+                          <td>{u.tipo}</td>
+                          <td><Link to={`/proyectos/editar/${u._id}`}>
+                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                            </Link></td>
+                         
+
+                            
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+
+            </div>
                 
                 <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
