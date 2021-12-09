@@ -86,4 +86,25 @@ query ProyectosLiderado($id: String!) {
 }
 `;
 
-export { GET_PROYECTOS, GET_PROYECTO, GET_PROYECTOS_LIDERADOS };
+const GET_AVANCES = gql`
+query FiltrarAvance($id: String!) {
+  filtrarAvance(_id: $id) {
+    descripcion
+    fecha
+    observaciones
+    _id
+    proyecto {
+      _id
+      nombre
+      presupuesto
+      fechaInicio
+      fechaFin
+      estado
+      fase
+    }
+  }
+}
+
+`
+
+export { GET_PROYECTOS, GET_PROYECTO, GET_PROYECTOS_LIDERADOS, GET_AVANCES };

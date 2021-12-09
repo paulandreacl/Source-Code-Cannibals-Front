@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enums';
+import { GET_AVANCES } from 'graphql/proyecto/queries';
 
 const DetallesProyecto = () => {
     const { form, formData, updateFormData } = useFormData(null);
@@ -19,6 +20,14 @@ const DetallesProyecto = () => {
         error: queryError,
         data: queryData,
     } = useQuery(GET_PROYECTO, {
+        variables: { _id }
+    });
+
+    const {
+        loading: queryLoadingAv,
+        error: queryErrorAv,
+        data: queryDataAv,
+    } = useQuery(GET_AVANCES, {
         variables: { _id }
     });
     console.log(queryData)
@@ -128,6 +137,39 @@ const DetallesProyecto = () => {
                           <td>{u.descripcion}</td>
                           <td>{u.tipo}</td>
                           <td><Link to={`/proyectos/editar/${u._id}`}>
+                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                            </Link></td>
+                         
+
+                            
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+
+            </div>
+
+            <div>
+                <table className='table table-hover tabla_basedatos'>
+                <thead className="table-green-titles">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    
+                    <th>Editar</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {queryDataAv &&
+                    queryDataAv.filtrarAvance.map((a) => {
+                        console.log(a)
+                      return (
+                        <tr key={a._id}>
+                          <td>{a.descripcion}</td>
+                          <td>{a.fecha}</td>
+                          <td><Link to={`/proyectos/editar/${a._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link></td>
                          
