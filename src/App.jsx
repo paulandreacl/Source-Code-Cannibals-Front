@@ -18,6 +18,7 @@ import EditarUsuario from 'pages/usuario/editar';
 import EditarProyecto from 'pages/proyecto/editar';
 import AceptarInscripcion from 'pages/inscripcion/aceptar';
 import RechazarInscripcion from 'pages/inscripcion/rechazar';
+import EditarAvance from 'pages/avance/editar';
 
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
@@ -78,6 +79,7 @@ function App() {
                 <Route path='/inscripciones/aceptar/:_id' element={<AceptarInscripcion />} />
                 <Route path='/inscripciones/rechazar/:_id' element={<RechazarInscripcion />} />
                 <Route path='/avances' element={<IndexAvances />} />
+                <Route path='/avances/editar/:_id' element={<EditarAvance />} />
                 
               </Route>
               <Route path='/auth' element={<AuthLayout />}>
