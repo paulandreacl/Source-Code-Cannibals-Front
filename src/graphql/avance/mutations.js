@@ -1,24 +1,24 @@
 import { gql } from '@apollo/client';
 
-const ACEPTAR_INSCRIPCION = gql`
-mutation AprobarInscripcion($aprobarInscripcionId: String!) {
-  aprobarInscripcion(id: $aprobarInscripcionId) {
+const EDITAR_AVANCE = gql`
+mutation EditarAvance($id: String!, $descripcion: String!) {
+  editarAvance(_id: $id, descripcion: $descripcion) {
     _id
-    estado
-    fechaIngreso
-    fechaEgreso
+    fecha
+    descripcion
+    observaciones
+    proyecto {
+      _id
+      nombre
+    }
+    creadoPor {
+      _id
+      nombre
+      apellido
+      rol
+    }
   }
 }
 `;
 
-const RECHAZAR_INSCRIPCION = gql`
-mutation RechazarInscripcion($rechazarInscripcionId: String!) {
-  rechazarInscripcion(id: $rechazarInscripcionId) {
-    _id
-    estado
-    fechaIngreso
-    fechaEgreso
-  }
-}
-`;
-export { ACEPTAR_INSCRIPCION,RECHAZAR_INSCRIPCION };
+export { EDITAR_AVANCE };

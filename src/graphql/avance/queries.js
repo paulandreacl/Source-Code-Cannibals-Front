@@ -21,20 +21,21 @@ query Avances {
 `;
 
 const GET_AVANCE = gql`
-query FiltrarInscripcion($id: String!) {
-  FiltrarInscripcion(_id: $id) {
+query FiltrarAvance($id: String!) {
+  filtrarAvance(_id: $id) {
     _id
-    estado
-    fechaIngreso
-    fechaEgreso
+    descripcion
+    fecha
+    observaciones
     proyecto {
       _id
       nombre
     }
-    estudiante {
+    creadoPor {
       _id
       nombre
       apellido
+      rol
     }
   }
 }
