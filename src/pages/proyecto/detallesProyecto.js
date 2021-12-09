@@ -91,9 +91,9 @@ const DetallesProyecto = () => {
                 <div className="col-md-3">
                 <Input
                     label='Fecha Inicio:'
-                    type='text'
+                    type='Date'
                     name='fechaInicio'
-                    defaultValue={queryData.Proyecto.fechaInicio}
+                    defaultValue={!queryData.Proyecto.fechaInicio ? '' : queryData.Proyecto.fechaInicio.slice(0, -14) }
                     required={true}
                 />
                 </div>
@@ -102,7 +102,7 @@ const DetallesProyecto = () => {
                     label='Fecha Fin:'
                     type='date'
                     name='fechaFin'
-                    defaultValue={queryData.Proyecto.fechaFin}
+                    defaultValue={!queryData.Proyecto.fechaFin ? '' : queryData.Proyecto.fechaFin.slice(0, -14)}
                     required={true}
                 />
                 </div>
@@ -166,7 +166,7 @@ const DetallesProyecto = () => {
                       return (
                         <tr key={a._id}>
                           <td>{a.descripcion}</td>
-                          <td>{!a.fecha}</td>
+                          <td>{!a.fecha ? '' : a.fecha.slice(0, -14)}</td>
                           <td>{a.creadoPor.nombre + " " + a.creadoPor.apellido}</td>
                           <td><Link to={`/proyectos/editar/${a._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />

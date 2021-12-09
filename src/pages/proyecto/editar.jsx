@@ -84,9 +84,9 @@ const EditarProyecto = () => {
                 <div className="col-md-3">
                 <Input
                     label='Fecha Inicio:'
-                    type='text'
+                    type='Date'
                     name='fechaInicio'
-                    defaultValue={queryData.Proyecto.fechaInicio+ 'hola'}
+                    defaultValue={!queryData.Proyecto.fechaInicio ? '' : queryData.Proyecto.fechaInicio.slice(0, -14)}
                     required={true}
                 />
                 </div>
@@ -95,7 +95,7 @@ const EditarProyecto = () => {
                     label='Fecha Fin:'
                     type='date'
                     name='fechaFin'
-                    defaultValue={queryData.Proyecto.fechaFin}
+                    defaultValue={!queryData.Proyecto.fechaFin ? '' : queryData.Proyecto.fechaFin.slice(0, -14)}
                     required={true}
                 />
                 </div>
