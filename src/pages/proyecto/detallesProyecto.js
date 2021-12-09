@@ -27,7 +27,7 @@ const DetallesProyecto = () => {
         loading: queryLoadingAv,
         error: queryErrorAv,
         data: queryDataAv,
-    } = useQuery(GET_AVANCES, {variables: {id: _id}});
+    } = useQuery(GET_AVANCE, {variables: {id: _id}});
     console.log(queryData)
     const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_PROYECTO);
@@ -154,19 +154,20 @@ const DetallesProyecto = () => {
                   <tr>
                     <th>Nombre</th>
                     <th>Fecha</th>
-                    
+                    <th>Creado Por</th>
                     <th>Editar</th>
                     
                   </tr>
                 </thead>
                 <tbody>
                   {queryDataAv &&
-                    queryDataAv.Avances.map((a) => {
+                    queryDataAv.filtrarAvance.map((a) => {
                         console.log(a)
                       return (
                         <tr key={a._id}>
                           <td>{a.descripcion}</td>
-                          <td>{a.fecha}</td>
+                          <td>{!a.fecha}</td>
+                          <td>{a.creadoPor.nombre + " " + a.creadoPor.apellido}</td>
                           <td><Link to={`/proyectos/editar/${a._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link></td>
