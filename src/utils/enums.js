@@ -23,6 +23,15 @@ const Enum_FaseProyecto = {
     NULO: 'Nulo'
 }
 
+const Enum_EstadoInscripcion = {
+    PENDIENTE: 'Pendiente', 
+    ACEPTADO: 'Aceptado',
+    RECHAZADO: 'Rechazado'
+}
 
+const Enum_TipoObjetivo = {
+    GENERAL: 'General',
+    ESPECIFICO: 'Específico',
+  };
 
-export { Enum_EstadoUsuario, Enum_Rol, Enum_EstadoProyecto, Enum_FaseProyecto};
+export { Enum_EstadoUsuario, Enum_Rol, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_EstadoInscripcion, Enum_TipoObjetivo};
