@@ -1,6 +1,6 @@
 import React/* , { useEffect } */ from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_USUARIOS, GET_USUARIOROL } from 'graphql/usuario/queries';
+import { GET_USUARIOS } from 'graphql/usuario/queries';
 import { Link } from 'react-router-dom';
 import './usuario.css'
 import ButtonLoading from 'components/ButtonLoading';
@@ -10,12 +10,12 @@ import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
 const IndexUsuarios = () => {
-  const { data, error, loading } = useQuery(GET_USUARIOROL, {variables:{rol:'ESTUDIANTE'}});
-  console.log(data)
+  const { data, error, loading } = useQuery(GET_USUARIOS);
+
   if (loading) return <div>Loading...</div>;
 
-  if (error) return <div>Errores...</div>;
-  
+  if (error) return <div>Error...</div>;
+
   return (
     <div>
       <div className="accordion" id="accordionExample">
@@ -108,7 +108,7 @@ const IndexUsuarios = () => {
           <h2 className="accordion-header" id="headingTwo">
             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
               aria-expanded="false" aria-controls="collapseTwo">
-              Consultar Estudiantes
+              Consultar Usuarios
             </button>
           </h2>
           <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -129,7 +129,7 @@ const IndexUsuarios = () => {
                 </thead>
                 <tbody>
                   {data &&
-                    data.listaFiltradaRol.map((u) => {
+                    data.Usuarios.map((u) => {
                       return (
                         <tr key={u._id}>
                           <td>{u.nombre}</td>

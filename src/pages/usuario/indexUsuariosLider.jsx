@@ -9,7 +9,7 @@ import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
-const IndexUsuarios = () => {
+const IndexUsuariosLider = () => {
   const { data, error, loading } = useQuery(GET_USUARIOROL, {variables:{rol:'ESTUDIANTE'}});
   console.log(data)
   if (loading) return <div>Loading...</div>;
@@ -162,4 +162,4 @@ const IndexUsuarios = () => {
   );
 };
 
-export default IndexUsuarios
+export default IndexUsuariosLider

@@ -8,7 +8,8 @@ import Index from 'pages/home/Index';
 import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
-import IndexUsuarios from 'pages/usuario/indexUsuariosLider';
+import IndexUsuarios from 'pages/usuario';
+import IndexUsuariosLider from 'pages/usuario/indexUsuariosLider';
 import IndexProyectos from 'pages/proyecto/index';
 import IndexInscripciones from 'pages/inscripcion/index';
 import IndexAvances from 'pages/avance/index';
@@ -77,6 +78,7 @@ function App() {
                 <Route path='/avances' element={<IndexAvances />} />
                 <Route path='/proyectosLider' element={<IndexProyectosLider />} />
                 <Route path='/proyecto/:_id' element={<DetallesProyecto/>} />
+                <Route path='/usuariosLider' element={<IndexUsuariosLider/>} />
               </Route>
               <Route path='/auth' element={<AuthLayout />}>
                 <Route path='register' element={<Register />} />
