@@ -20,8 +20,8 @@ const IndexProyectosLider = () => {
   const { data, error, loading } = useQuery(GET_PROYECTOS_LIDERADOS, {variables:{
       id: "619f00313562c617b240f25b"
   }});
-
-  if (loading) return <div>Loading...</div>;
+   
+    if (loading) return <div>Loading...</div>;
 
   if (error) return <div>Error...</div>;
 

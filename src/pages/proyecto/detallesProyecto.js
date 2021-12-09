@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enums';
-import { GET_AVANCES } from 'graphql/proyecto/queries';
+import { GET_AVANCES, GET_AVANCE } from 'graphql/avance/queries';
 
 const DetallesProyecto = () => {
     const { form, formData, updateFormData } = useFormData(null);
@@ -27,9 +27,7 @@ const DetallesProyecto = () => {
         loading: queryLoadingAv,
         error: queryErrorAv,
         data: queryDataAv,
-    } = useQuery(GET_AVANCES, {
-        variables: { _id }
-    });
+    } = useQuery(GET_AVANCES);
     console.log(queryData)
     const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_PROYECTO);
@@ -155,7 +153,7 @@ const DetallesProyecto = () => {
                 <thead className="table-green-titles">
                   <tr>
                     <th>Nombre</th>
-                    <th>Tipo</th>
+                    <th>Fecha</th>
                     
                     <th>Editar</th>
                     
@@ -163,7 +161,7 @@ const DetallesProyecto = () => {
                 </thead>
                 <tbody>
                   {queryDataAv &&
-                    queryDataAv.filtrarAvance.map((a) => {
+                    queryDataAv.Avances.map((a) => {
                         console.log(a)
                       return (
                         <tr key={a._id}>
