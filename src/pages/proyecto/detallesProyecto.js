@@ -27,7 +27,7 @@ const DetallesProyecto = () => {
         loading: queryLoadingAv,
         error: queryErrorAv,
         data: queryDataAv,
-    } = useQuery(GET_AVANCES);
+    } = useQuery(GET_AVANCES, {variables: {id: _id}});
     console.log(queryData)
     const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_PROYECTO);
