@@ -8,7 +8,7 @@ import Index from 'pages/home/Index';
 import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
-import IndexUsuarios from 'pages/usuario/index';
+import IndexUsuarios from 'pages/usuario/indexUsuariosLider';
 import IndexProyectos from 'pages/proyecto/index';
 import IndexInscripciones from 'pages/inscripcion/index';
 import IndexAvances from 'pages/avance/index';
