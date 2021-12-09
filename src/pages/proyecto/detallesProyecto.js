@@ -56,7 +56,7 @@ const DetallesProyecto = () => {
             <Link to='/proyectos'>
                 <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
             </Link>
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Editar Proyecto</h1>
+            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Actualizar Proyecto</h1>
             <form
                 onSubmit={submitForm}
                 onChange={updateFormData}
