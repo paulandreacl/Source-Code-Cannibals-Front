@@ -41,4 +41,21 @@ const EDITAR_PROYECTO = gql`
 }
 `;
 
-export { EDITAR_PROYECTO };
+const CREAR_PROYECTO = gql`
+mutation Mutation($nombre: String!, $presupuesto: Float!, $lider: String!, $objetivos: [crearObjetivo]!) {
+  crearProyecto(nombre: $nombre, presupuesto: $presupuesto, lider: $lider, objetivos: $objetivos) {
+    _id
+    nombre
+    presupuesto
+    estado
+    fase
+    fechaInicio
+    fechaFin
+    lider {
+      _id
+    }
+  }
+}
+`;
+
+export { EDITAR_PROYECTO, CREAR_PROYECTO };
