@@ -133,8 +133,8 @@ const IndexProyectos = () => {
                         <tr key={u._id}>
                           <td>{u.nombre}</td>
                           <td>{u.presupuesto}</td>
-                          <td>{u.fechaInicio}</td>
-                          <td>{u.fechaFin}</td>
+                          <td>{!u.fechaInicio ? '' : u.fechaInicio.slice(0, -14)}</td>
+                          <td>{!u.fechaFin ? '' : u.fechaInicio.slice(0, -14)}</td>
                           <td>{u.estado}</td>
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
