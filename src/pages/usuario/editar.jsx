@@ -81,7 +81,7 @@ const EditarUsuario = () => {
                         required={true}
                     />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-6">
                 <Input
                     label='Correo del usuario:'
                     type='email'
