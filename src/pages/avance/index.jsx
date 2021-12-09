@@ -123,6 +123,7 @@ const IndexAvances = () => {
                 <thead className="table-green-titles">
                   <tr>
                     <th>Proyecto</th>
+                    <th>Descripción</th>
                     <th>Creado por:</th>
                     <th>Fecha</th>
                     <th>Observ. 1</th>
@@ -139,6 +140,7 @@ const IndexAvances = () => {
                       return (
                         <tr key={u._id}>
                           <td>{u.proyecto.nombre}</td>
+                          <td>{u.descripcion}</td>
                           <td>{u.creadoPor.nombre+ " "+ u.creadoPor.apellido}</td>
                           <td>{u.fecha}</td>
                           <td>{u.observaciones[0]}</td>
