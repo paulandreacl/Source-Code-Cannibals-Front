@@ -28,4 +28,18 @@ const GET_USUARIO = gql`
     }
 `;
 
-export { GET_USUARIOS, GET_USUARIO };
+const GET_USUARIOROL = gql`
+query ListaFiltradaRol($rol: Enum_Rol!) {
+    listaFiltradaRol(rol: $rol) {
+      nombre
+      estado
+      _id
+      rol
+      apellido
+      identificacion
+      correo
+    }
+  }
+`;
+
+export { GET_USUARIOS, GET_USUARIO, GET_USUARIOROL };

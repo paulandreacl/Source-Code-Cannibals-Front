@@ -20,6 +20,8 @@ import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
+import IndexProyectosLider from 'pages/proyecto/indexLider';
+import DetallesProyecto from 'pages/proyecto/detallesProyecto';
 
 // import PrivateRoute from 'components/PrivateRoute';
 /* const httpLink = createHttpLink ({
@@ -73,7 +75,8 @@ function App() {
                 <Route path='/proyectos/editar/:_id' element={<EditarProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
                 <Route path='/avances' element={<IndexAvances />} />
-                
+                <Route path='/proyectosLider' element={<IndexProyectosLider />} />
+                <Route path='/proyecto/:_id' element={<DetallesProyecto/>} />
               </Route>
               <Route path='/auth' element={<AuthLayout />}>
                 <Route path='register' element={<Register />} />
