@@ -172,14 +172,14 @@ const IndexInscripciones = () => {
                           <td>{u.fechaIngreso}</td>
                           <td>{u.fechaEgreso}</td>
                           
-                          <td>
+                          <td className='py-3 px-4'>
                             {/* <Link to={`/inscripciones/aceptar/${u._id}`}>
                               <i className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
                             </Link> */}
                             <button><i onClick={()=>{aceptarIncripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button>
                           </td>
-                          <td>
+                          <td className='py-3 px-4'>
                             {/* <Link to={`/inscripciones/rechazar/${u._id}`}>
                               <i className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer' />
                             </Link> */}
