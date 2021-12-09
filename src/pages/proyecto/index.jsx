@@ -146,6 +146,7 @@ const IndexProyectos = () => {
                     <th>Fase</th>
                     <th>Lider</th>
                     <th>Editar</th>
+                    <th>Incripción</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,11 +162,13 @@ const IndexProyectos = () => {
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' '+ u.lider.apellido}</td>
                           
-                          <td>
+                          <td className='py-3 px-4'>
                             <Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
+                          <td className='py-3 px-5'> <button><i onClick={()=>{console.log("chido")}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
                         </tr>
                       );
                     })}
