@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './inscripcion.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
-import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
+import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
@@ -40,56 +40,58 @@ const IndexInscripciones = () => {
             >
                 <div className="col-md-3">
                     <Input
-                        label='Nombre del usuario:'
+                        label='Nombre del Proyecto:'
                         type='text'
                         name='nombre'
+                        /* defaultValue={queryData.Inscripcion._id} */
                         required={true}
                     />
                 </div>
                 <div className="col-md-3">
                     <Input
-                        label='Apellido del usuario:'
+                        label='Nombre del estudiante:'
                         type='text'
-                        name='apellido'
+                        name='estudiante'
+                        /* defaultValue={queryData.Inscripcion.apellido} */
                         required={true}
                     />
                 </div>
-                <div className="col-md-3">
-                <Input
-                    label='Correo del usuario:'
-                    type='email'
-                    name='correo'
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Identificación del usuario:'
-                    type='text'
-                    name='identificacion'
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
+
+        
+                
+                {/* <div className="col-md-3">
                 <DropDown
-                    label='Estado del usuario:'
+                    label='Estado de la Inscripción:'
                     name='estado'
+                    defaultValue={"pendiente"} 
                     required={true}
-                    defaultValue={"Pendiente"}
-                    options={Enum_EstadoUsuario}
+                    options={Enum_EstadoInscripcion}
                     disabled={true}
                 />
-                </div>
+                </div> */}
+            
+                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
                 <div className="col-md-3">
-                <DropDown
-                    label='Rol del usuario:'
-                    name='rol'
+                <Input
+                    label='Ingreso:'
+                    type='date'
+                    name='ingreso'
+                    /* defaultValue={queryData.Inscripcion.identificacion} */
                     required={true}
-                    options={Enum_Rol}
-                    disabled={false}
                 />
                 </div>
-                                
+
+                <div className="col-md-3">
+                <Input
+                    label='Egreso:'
+                    type='date'
+                    name='egreso'
+                    /* defaultValue={queryData.Inscripcion.correo} */
+                    required={true}
+                />
+                </div>
+
+
                 <ButtonLoading className="btn-primary"
                     /* disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading} */
@@ -123,7 +125,8 @@ const IndexInscripciones = () => {
                     <th>Ingreso</th>
                     <th>Egreso</th>
                     
-                    <th>Editar</th>
+                    <th>Aceptar</th>
+                    <th>Rechazar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,7 +141,12 @@ const IndexInscripciones = () => {
                           <td>{u.fechaEgreso}</td>
                           
                           <td>
-                            <Link to={`/inscripciones/editar/${u._id}`}>
+                            <Link to={`/inscripciones/aceptar/${u._id}`}>
+                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                            </Link>
+                          </td>
+                          <td>
+                            <Link to={`/inscripciones/rechazar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>

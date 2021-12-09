@@ -1,6 +1,6 @@
 import React/* , { useEffect } */ from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
+import { GET_AVANCES } from 'graphql/avance/queries';
 import { Link } from 'react-router-dom';
 import './avance.css'
 import ButtonLoading from 'components/ButtonLoading';
@@ -10,7 +10,7 @@ import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
 const IndexAvances = () => {
-  const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
+  const { data, error, loading } = useQuery(GET_AVANCES);
 
   if (loading) return <div>Loading...</div>;
 
@@ -119,7 +119,7 @@ const IndexAvances = () => {
                   <tr>
                     <th>Proyecto</th>
                     <th>Estudiante</th>
-                    <th>Estado</th>
+                    <th>Fecha</th>
                     <th>Ingreso</th>
                     <th>Egreso</th>
                     
