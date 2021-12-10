@@ -1,35 +1,35 @@
 import React, { useEffect } from 'react';
-import { GET_USUARIO } from 'graphql/usuario/queries';
+import { GET_INSCRIPCION } from 'graphql/inscripcion/queries';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
-import { EDITAR_USUARIO } from 'graphql/usuario/mutations';
+import { RECHAZAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
-import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
+import { Enum_EstadoInscripcion } from 'utils/enums';
 
-const EditarUsuario = () => {
+const RechazarInscripcion = () => {
     const { form, formData, updateFormData } = useFormData(null);
     const { _id } = useParams();
     const {
         loading: queryLoading,
         error: queryError,
         data: queryData,
-    } = useQuery(GET_USUARIO, {
+    } = useQuery(GET_INSCRIPCION, {
         variables: { _id }
     });
 
-    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-        useMutation(EDITAR_USUARIO);
+    const [rechazarInscripcion, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+        useMutation(RECHAZAR_INSCRIPCION);
 
     const submitForm = (e) => {
         e.preventDefault();
         console.log(formData);
-        editarUsuario({
-            variables: { _id, ...formData, rol: 'ADMINISTRADOR' }
+        rechazarInscripcion({
+            variables: { _id, ...formData }
         })
     };
 
@@ -53,10 +53,10 @@ const EditarUsuario = () => {
 
     return (
         <div className='flew flex-col w-full h-full items-center justify-center p-10'>
-            <Link to='/usuarios'>
+            <Link to='/inscripciones'>
                 <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
             </Link>
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Editar Usuario</h1>
+            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Rechazar Inscripcion</h1>
             <form
                 onSubmit={submitForm}
                 onChange={updateFormData}
@@ -65,70 +65,66 @@ const EditarUsuario = () => {
             >
                 <div className="col-md-3">
                     <Input
-                        label='Nombre del usuario:'
+                        label='Nombre del Proyecto:'
                         type='text'
                         name='nombre'
-                        defaultValue={queryData.Usuario.nombre}
+                        /* defaultValue={queryData.Inscripcion._id} */
                         required={true}
                     />
                 </div>
                 <div className="col-md-3">
                     <Input
-                        label='Apellido del usuario:'
+                        label='Nombre del estudiante:'
                         type='text'
-                        name='apellido'
-                        defaultValue={queryData.Usuario.apellido}
+                        name='estudiante'
+                        /* defaultValue={queryData.Inscripcion.apellido} */
                         required={true}
                     />
                 </div>
-                <div className="col-md-6">
-                <Input
-                    label='Correo del usuario:'
-                    type='email'
-                    name='correo'
-                    defaultValue={queryData.Usuario.correo}
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Identificación del usuario:'
-                    type='text'
-                    name='identificacion'
-                    defaultValue={queryData.Usuario.identificacion}
-                    required={true}
-                />
-                </div>
+
+        
+                
                 <div className="col-md-3">
                 <DropDown
-                    label='Estado del usuario:'
+                    label='Estado del proyecto:'
                     name='estado'
-                    defaultValue={queryData.Usuario.estado}
+                    /* defaultValue={queryData.Inscripcion.estado} */
                     required={true}
-                    options={Enum_EstadoUsuario}
+                    options={Enum_EstadoInscripcion}
                     disabled={false}
                 />
                 </div>
+            
+                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
                 <div className="col-md-3">
-                <DropDown
-                    label='Rol del usuario:'
-                    name='rol'
-                    defaultValue={queryData.Usuario.rol}
+                <Input
+                    label='Ingreso:'
+                    type='date'
+                    name='ingreso'
+                    /* defaultValue={queryData.Inscripcion.identificacion} */
                     required={true}
-                    options={Enum_Rol}
-                    disabled={true}
                 />
                 </div>
-                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
-                
+
+                <div className="col-md-3">
+                <Input
+                    label='Egreso:'
+                    type='date'
+                    name='egreso'
+                    /* defaultValue={queryData.Inscripcion.correo} */
+                    required={true}
+                />
+                </div>
+
+
                 <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading}
-                    text='Confirmar'
+                    text='Rechazar Inscripción'
                 />
             </form>
         </div>
     );
 };
 
-export default EditarUsuario;
+export default RechazarInscripcion;

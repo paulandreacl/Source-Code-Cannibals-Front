@@ -1,7 +1,8 @@
 import React/* , { useEffect } */ from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_PROYECTOS } from 'graphql/proyecto/queries';
-import { Link } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_PROYECTOS, GET_PROYECTO } from 'graphql/proyecto/queries';
+import { CREAR_INSCRIPCION  } from 'graphql/proyecto/mutations';
+import { Link, useNavigate } from 'react-router-dom';
 import './proyecto.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
@@ -11,6 +12,26 @@ import Input from 'components/Input';
 
 const IndexProyectos = () => {
   const { data, error, loading } = useQuery(GET_PROYECTOS);
+
+  // const { data: dataMutation2, loading: loadingMutation2,
+  //   error: errorMutaton2 } = useQuery(GET_PROYECTO);
+
+  const [inscribir,{data: dataMutation1, loading: loadingMutation1,
+    error: errorMutaton1}]=useMutation(CREAR_INSCRIPCION);
+  
+  const navigate=useNavigate('/inscripciones',{replace:true});
+
+  const inscripcion = (proyecto) => {
+    console.log(proyecto._id)
+     inscribir({variables:{
+       proyecto: proyecto._id,
+       estudiante:'61a83b3e5300014bdd95e3eb'   /* Warning colocar info del usuario que se registro inicialmente*/
+     }}
+     );
+     navigate('/inscripciones',{replace:true});
+     window.location.reload(true)
+  };
+
 
   if (loading) return <div>Loading...</div>;
 
@@ -146,6 +167,7 @@ const IndexProyectos = () => {
                     <th>Fase</th>
                     <th>Lider</th>
                     <th>Editar</th>
+                    <th>Incripción</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,11 +183,17 @@ const IndexProyectos = () => {
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' '+ u.lider.apellido}</td>
                           
-                          <td>
+                          <td className='py-3 px-4'>
                             <Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
+                          
+                          {/* <td className='py-3 px-5'> <Link to={`/inscripciones`}><button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></Link></td> */}
+                          <td className='py-3 px-5'> <button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
+                          
                         </tr>
                       );
                     })}
@@ -184,5 +212,7 @@ const IndexProyectos = () => {
     </div>
   );
 };
+
+
 
 export default IndexProyectos

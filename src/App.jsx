@@ -5,7 +5,6 @@ import { UserContext } from 'context/userContext';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Index from 'pages/home/Index';
-import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import IndexUsuarios from 'pages/usuario/index';
@@ -16,6 +15,10 @@ import 'styles/globals.css';
 import 'styles/table.css'
 import EditarUsuario from 'pages/usuario/editar';
 import EditarProyecto from 'pages/proyecto/editar';
+import AceptarInscripcion from 'pages/inscripcion/aceptar';
+import RechazarInscripcion from 'pages/inscripcion/rechazar';
+import EditarAvance from 'pages/avance/editar';
+
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
@@ -72,7 +75,10 @@ function App() {
                 <Route path='/proyectos' element={<IndexProyectos />} />
                 <Route path='/proyectos/editar/:_id' element={<EditarProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
+                <Route path='/inscripciones/aceptar/:_id' element={<AceptarInscripcion />} />
+                <Route path='/inscripciones/rechazar/:_id' element={<RechazarInscripcion />} />
                 <Route path='/avances' element={<IndexAvances />} />
+                <Route path='/avances/editar/:_id' element={<EditarAvance />} />
                 
               </Route>
               <Route path='/auth' element={<AuthLayout />}>
