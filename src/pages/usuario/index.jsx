@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuario/queries';
-import { CREAR_USUARIO } from 'graphql/usuario/mutations';
+import { REGISTRO } from 'graphql/usuario/mutations';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -12,8 +12,12 @@ import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
+import { useAuth } from 'context/authContext';
 
 const IndexUsuarios = () => {
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
   const { data, error, loading } = useQuery(GET_USUARIOS);
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
@@ -31,7 +35,7 @@ const IndexUsuarios = () => {
 });
 
   const [crearUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-      useMutation(CREAR_USUARIO);
+      useMutation(REGISTRO);
 
   const submitForm = (e) => {
       e.preventDefault();
@@ -40,7 +44,15 @@ const IndexUsuarios = () => {
           variables: { _id, ...formData }
       })
   };
-
+  useEffect(() => {
+    console.log('data mutation', mutationData);
+    if (mutationData) {
+      if (mutationData.registro.token) {
+        setToken(mutationData.crearUsuario.token);
+        navigate('/');
+      }
+    }
+  }, [mutationData, setToken, navigate]);
   useEffect(() => {
       if (mutationData) {
           toast.success('Usuario creado correctamente');
@@ -92,14 +104,7 @@ const IndexUsuarios = () => {
                         required={true}
                     />
                 </div>
-                <div className="col-md-6">
-                <Input
-                    label='Correo del usuario:'
-                    type='email'
-                    name='correo'
-                    required={true}
-                />
-                </div>
+
                 <div className="col-md-3">
                 <Input
                     label='Identificación del usuario:'
@@ -108,6 +113,29 @@ const IndexUsuarios = () => {
                     required={true}
                 />
                 </div>
+
+                <div class="w-100"></div>
+
+                <div className="col-md-6">
+                <Input
+                    label='Correo del usuario:'
+                    type='email'
+                    name='correo'
+                    required={true}
+                />
+                </div>
+
+                <div className="col-md-3">
+                <Input 
+                    label='Contraseña:'
+                    name='password' 
+                    type='password' 
+                    required={true} 
+                    />
+
+                </div>
+
+                <div class="w-100"></div>
 
                 <div className="col-md-3">
                 <DropDown
