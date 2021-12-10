@@ -1,6 +1,7 @@
-import React/* , { useEffect } */ from 'react';
-import { useQuery } from '@apollo/client';
+import React , { useEffect } from 'react';
+import { useQuery, useMutation} from '@apollo/client';
 import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
+import { ACEPTAR_INSCRIPCION, RECHAZAR_INSCRIPCION } from 'graphql/inscripcion/mutations';
 import { Link } from 'react-router-dom';
 import './inscripcion.css'
 import ButtonLoading from 'components/ButtonLoading';
@@ -11,6 +12,37 @@ import Input from 'components/Input';
 
 const IndexInscripciones = () => {
   const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
+
+  /*useEffect(() => {
+    console.log(data)
+  },[data]);*/
+
+  const [aceptar,{data: dataMutation1, loading: loadingMutation1,
+    error: errorMutaton1}]=useMutation(ACEPTAR_INSCRIPCION);
+  
+  const [rechazar,{data: dataMutation2, loading: loadingMutation2,
+    error: errorMutaton2}]=useMutation(RECHAZAR_INSCRIPCION);
+
+
+  const aceptarInscripcion = (e) => {
+    // console.log('Incripción Aceptada');
+    let alertaUsuario=window.confirm('¿Está seguro de aceptar el usuario?');
+    if (alertaUsuario) {
+      aceptar({variables:{
+        aprobarInscripcionId:e._id
+      }});    
+    }
+  };
+
+  const rechazarInscripcion = (e) => {
+    // console.log('Incripción Rechazada')
+    let alertaUsuario=window.confirm('¿Está seguro de aceptar el usuario?');
+    if (alertaUsuario){
+      rechazar({variables:{
+        rechazarInscripcionId:e._id
+      }})
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -139,16 +171,19 @@ const IndexInscripciones = () => {
                           <td>{u.estado}</td>
                           <td>{u.fechaIngreso}</td>
                           <td>{u.fechaEgreso}</td>
-                          
-                          <td>
-                            <Link to={`/inscripciones/aceptar/${u._id}`}>
-                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link>
+                          <td className='py-3 px-4'>
+                            {/* <Link to={`/inscripciones/aceptar/${u._id}`}>
+                              <i className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
+                            </Link> */}
+                            <button><i onClick={()=>{aceptarInscripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button>
                           </td>
-                          <td>
-                            <Link to={`/inscripciones/rechazar/${u._id}`}>
-                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link>
+                          <td className='py-3 px-4'>
+                            {/* <Link to={`/inscripciones/rechazar/${u._id}`}>
+                              <i className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer' />
+                            </Link> */}
+                            <button><i onClick={()=>(rechazarInscripcion(u))} className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer'/></button>
+
                           </td>
                         </tr>
                       );
@@ -160,10 +195,6 @@ const IndexInscripciones = () => {
           </div>
         </div >
       </div >
-
-
-
-
 
     </div>
   );

@@ -28,4 +28,30 @@ const EDITAR_USUARIO = gql`
   }
 `;
 
-export { EDITAR_USUARIO };
+const CREAR_USUARIO = gql`
+mutation CrearUsuario(
+  $nombre: String!,
+  $apellido: String!,
+  $identificacion: String!,
+  $correo: String!,
+  $rol: Enum_Rol!,
+  $estado: Enum_EstadoUsuario) {
+  crearUsuario(
+    nombre: $nombre,
+    apellido: $apellido,
+    identificacion: $identificacion,
+      correo: $correo,
+      rol: $rol,
+      estado: $estado) {
+    _id
+    nombre
+    apellido
+    identificacion
+    correo
+    rol
+    estado
+  }
+}
+`;
+
+export { EDITAR_USUARIO, CREAR_USUARIO };
