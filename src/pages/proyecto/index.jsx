@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PROYECTOS } from 'graphql/proyecto/queries';
 import { GET_USUARIOS } from 'graphql/usuario/queries';
+import {  PROYECTO_FASE_EDITADO } from 'graphql/proyecto/mutations';
 import { Link } from 'react-router-dom';
 import './proyecto.css'
 import ButtonLoading from 'components/ButtonLoading';
@@ -23,6 +24,18 @@ const IndexProyectos = () => {
 
   const [crearProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(CREAR_PROYECTO);
+
+  const [activar,{data: dataMutation1, loading: loadingMutation1,
+    error: errorMutaton1}]=useMutation(PROYECTO_FASE_EDITADO);
+
+  const activarProyecto = (e) => {
+      activar({variables:{
+        id: e._id,
+        fechaInicio: Date.now(),
+        estado: "ACTIVO",
+        fase: "INICIADO",
+      }});    
+  };
 
   useEffect(() => {
 
@@ -133,8 +146,8 @@ const IndexProyectos = () => {
                         <tr key={u._id}>
                           <td>{u.nombre}</td>
                           <td>{u.presupuesto}</td>
-                          <td>{u.fechaInicio}</td>
-                          <td>{u.fechaFin}</td>
+                          <td>{!u.fechaInicio ? '' : u.fechaInicio.slice(0, -14)}</td>
+                          <td>{!u.fechaFin ? '' : u.fechaFin.slice(0, -14)}</td>
                           <td>{u.estado}</td>
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
@@ -146,6 +159,10 @@ const IndexProyectos = () => {
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
+                          {u.estado == "INACTIVO" && u.fase == "NULO" ? <td className='py-3 px-4'>
+                            <button><i onClick={()=>{activarProyecto(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button>
+                          </td> : ""}
                         </tr>
                       );
                     })}
@@ -159,8 +176,6 @@ const IndexProyectos = () => {
     </div>
   );
 };
-
-export default IndexProyectos
 
 const Objetivos = () => {
   const [listaObjetivos, setListaObjetivos] = useState([]);
@@ -231,3 +246,5 @@ const FormObjetivo = ({ id }) => {
     </div>
   );
 };
+
+export default IndexProyectos
