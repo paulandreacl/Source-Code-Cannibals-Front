@@ -136,6 +136,7 @@ const DetallesProyecto = () => {
                         <tr key={u._id}>
                           <td>{u.descripcion}</td>
                           <td>{u.tipo}</td>
+                          
                           <td><Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link></td>
@@ -157,8 +158,10 @@ const DetallesProyecto = () => {
                   <tr>
                     <th>Nombre</th>
                     <th>Fecha</th>
-                    <th>Creado Por</th>
-                    <th>Editar</th>
+                    <th>Creado Por</th>                    
+                    <th>Observacion 1</th>
+                    <th>Observacion 2</th>
+                    <th>Observacion 3</th>
                     
                   </tr>
                 </thead>
@@ -171,9 +174,12 @@ const DetallesProyecto = () => {
                           <td>{a.descripcion}</td>
                           <td>{!a.fecha ? '' : a.fecha.slice(0, -14)}</td>
                           <td>{a.creadoPor.nombre + " " + a.creadoPor.apellido}</td>
-                          <td><Link to={`/proyectos/editar/${a._id}`}>
+                          <td>{a.observaciones[0]}</td>
+                          <td>{a.observaciones[1]}</td>
+                          <td>{a.observaciones[2]}</td>
+                          {/* <td><Link to={`/proyectos/editar/${a._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link></td>
+                            </Link></td> */}
                          
 
                             
