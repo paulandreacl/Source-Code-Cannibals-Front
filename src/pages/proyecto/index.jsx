@@ -2,7 +2,7 @@ import React/* , { useEffect } */ from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PROYECTOS, GET_PROYECTO } from 'graphql/proyecto/queries';
 import { CREAR_INSCRIPCION  } from 'graphql/proyecto/mutations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './proyecto.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
@@ -19,7 +19,7 @@ const IndexProyectos = () => {
   const [inscribir,{data: dataMutation1, loading: loadingMutation1,
     error: errorMutaton1}]=useMutation(CREAR_INSCRIPCION);
   
-  
+  const navigate=useNavigate('/inscripciones',{replace:true});
 
   const inscripcion = (proyecto) => {
     console.log(proyecto._id)
@@ -28,6 +28,7 @@ const IndexProyectos = () => {
        estudiante:'61a83b3e5300014bdd95e3eb'   /* Warning colocar info del usuario que se registro inicialmente*/
      }}
      );
+     navigate('/inscripciones',{replace:true});
   };
 
 
@@ -187,8 +188,10 @@ const IndexProyectos = () => {
                             </Link>
                           </td>
                           
-                          <td className='py-3 px-5'> <Link to={`/inscripciones`}><button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
-                            cursor-pointer'/></button></Link></td>
+                          {/* <td className='py-3 px-5'> <Link to={`/inscripciones`}><button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></Link></td> */}
+                          <td className='py-3 px-5'> <button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
                           
                         </tr>
                       );
