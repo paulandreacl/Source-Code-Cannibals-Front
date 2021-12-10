@@ -32,120 +32,18 @@ const IndexProyectosLider = () => {
 
   return (
     <div>
-      <div className="accordion" id="accordionExample">
-
-        <div className="accordion-item">
-          <h2 className="accordion-header" id="headingOne">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-              aria-expanded="false" aria-controls="collapseOne">
-              Agregar Proyecto
-            </button>
-          </h2>
-          <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample">
-            <div className="accordion-body">
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Proyecto</h1>
-            <form
-                /* onSubmit={submitForm}
-                onChange={updateFormData}
-                ref={form} */
-                className='row g-3  items-center justify-center '
-            >
-                <div className="col-md-3">
-                    <Input
-                        label='Nombre del proyecto:'
-                        type='text'
-                        name='nombre'
-                        required={true}
-                    />
-                </div>
-                <div className="col-md-3">
-                    <Input
-                        label='Presupuesto:'
-                        type='number'
-                        name='apellido'
-                        required={true}
-                    />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Fecha Inicio:'
-                    type='date'
-                    name='fechaInicio'
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Fecha Fin:'
-                    type='date'
-                    name='fechaFin'
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Líder:'
-                    type='text'
-                    name='lider'
-                    required={true}
-                />
-                </div>
-                
-                <div className="col-md-3">
-                <DropDown
-                    label='Estado del proyecto:'
-                    name='estado'
-                    required={true}
-                    defaultValue={"INACTIVO"}
-                    options={Enum_EstadoProyecto}
-                    disabled={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <DropDown
-                    label='Fase del proyecto:'
-                    name='fase'
-                    required={true}
-                    defaultValue={"NULO"}
-                    options={Enum_FaseProyecto}
-                    disabled={true}
-                />
-                </div>
-
-                <div className="col-md-8">
-                <Input
-                    label='Objetivo:'
-                    type='text'
-                    name='objetivo'
-                    required={true}
-                />
-                </div>
-
-
-                {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
-                
-                <ButtonLoading className="btn-primary"
-                    /* disabled={Object.keys(formData).length === 0}
-                    loading={mutationLoading} */
-                    text='Confirmar'
-                />
-            </form>
-            </div>
-          </div>
-        </div >
-      </div >
+      
 
       <div className="accordion" id="accordionExample">
 
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-              aria-expanded="false" aria-controls="collapseTwo">
-              Consultar Mis Proyectos
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisProyectos"
+              aria-expanded="false" aria-controls="collapseMisProyectos">
+              Consultar Mis Proyectos Liderados
             </button>
           </h2>
-          <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
+          <div id="collapseMisProyectos" className="accordion-collapse collapse" aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
               
@@ -259,7 +157,7 @@ const IndexProyectosLider = () => {
   );
 };
 
-export default IndexProyectosLider
+
 
 const Objetivos = () => {
   const [listaObjetivos, setListaObjetivos] = useState([]);
@@ -330,3 +228,6 @@ const FormObjetivo = ({ id }) => {
     </div>
   );
 };
+
+
+export default IndexProyectosLider

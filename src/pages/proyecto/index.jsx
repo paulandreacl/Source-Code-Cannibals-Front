@@ -15,6 +15,7 @@ import { Enum_TipoObjetivo } from 'utils/enums';
 import { nanoid } from 'nanoid';
 import { ObjContext } from 'context/objContext';
 import { useObj } from 'context/objContext';
+import IndexProyectosLider from './indexLider';
 
 
 const IndexProyectos = () => {
@@ -173,6 +174,8 @@ const IndexProyectos = () => {
           </div>
         </div >
       </div >
+     <div>
+       <IndexProyectosLider></IndexProyectosLider></div> 
     </div>
   );
 };
