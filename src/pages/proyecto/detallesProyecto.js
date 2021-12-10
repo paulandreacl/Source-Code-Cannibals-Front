@@ -63,7 +63,7 @@ const DetallesProyecto = () => {
             <Link to='/proyectos'>
                 <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
             </Link>
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Actualizar Proyecto</h1>
+            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Ver Detalles del Proyecto</h1>
             <form
                 onSubmit={submitForm}
                 onChange={updateFormData}
@@ -116,6 +116,8 @@ const DetallesProyecto = () => {
                     
                 />
                 </div>
+                <h2 className='m-4 text-3xl text-gray-800 font-bold text-center'>Objetivos del proyecto</h2>
+
                 <div>
                 <table className='table table-hover tabla_basedatos'>
                 <thead className="table-green-titles">
@@ -147,6 +149,7 @@ const DetallesProyecto = () => {
               </table>
 
             </div>
+            <h3 className='m-4 text-3xl text-gray-800 font-bold text-center'>Avances del proyecto</h3>
 
             <div>
                 <table className='table table-hover tabla_basedatos'>
@@ -182,11 +185,7 @@ const DetallesProyecto = () => {
 
             </div>
                 
-                <ButtonLoading className="btn-primary"
-                    disabled={Object.keys(formData).length === 0}
-                    loading={mutationLoading}
-                    text='Confirmar'
-                />
+                
                 
             </form>
         </div>
