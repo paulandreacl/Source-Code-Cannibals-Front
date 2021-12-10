@@ -162,7 +162,8 @@ const IndexProyectos = () => {
                     <th>Objetio</th>
                     <th>Editar</th>
                     <th>Acti proyec</th>
-                    <th>Incripción</th>
+                    <th>Agregar Incripción</th>
+                    <th>Agregar Avance</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -190,6 +191,8 @@ const IndexProyectos = () => {
                             cursor-pointer'/></button>
                           </td> : ""}</td>
                           <td className='py-3 px-5'> <button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
+                          <td className='py-3 px-5'> <button><i onClick={()=>{}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button></td>
                         </tr>
                       );
