@@ -1,6 +1,7 @@
 import React/* , { useEffect } */ from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_PROYECTOS } from 'graphql/proyecto/queries';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_PROYECTOS, GET_PROYECTO } from 'graphql/proyecto/queries';
+import { CREAR_INSCRIPCION  } from 'graphql/proyecto/mutations';
 import { Link } from 'react-router-dom';
 import './proyecto.css'
 import ButtonLoading from 'components/ButtonLoading';
@@ -11,6 +12,24 @@ import Input from 'components/Input';
 
 const IndexProyectos = () => {
   const { data, error, loading } = useQuery(GET_PROYECTOS);
+
+  // const { data: dataMutation2, loading: loadingMutation2,
+  //   error: errorMutaton2 } = useQuery(GET_PROYECTO);
+
+  const [inscribir,{data: dataMutation1, loading: loadingMutation1,
+    error: errorMutaton1}]=useMutation(CREAR_INSCRIPCION);
+  
+  
+
+  const inscripcion = (proyecto) => {
+    console.log(proyecto._id)
+     inscribir({variables:{
+       proyecto: proyecto._id,
+       estudiante:'61a83b3e5300014bdd95e3eb'   /* Warning colocar info del usuario que se registro inicialmente*/
+     }}
+     );
+  };
+
 
   if (loading) return <div>Loading...</div>;
 
@@ -167,8 +186,10 @@ const IndexProyectos = () => {
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
-                          <td className='py-3 px-5'> <button><i onClick={()=>{console.log("chido")}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
-                            cursor-pointer'/></button></td>
+                          
+                          <td className='py-3 px-5'> <Link to={`/inscripciones`}><button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></Link></td>
+                          
                         </tr>
                       );
                     })}
@@ -187,5 +208,7 @@ const IndexProyectos = () => {
     </div>
   );
 };
+
+
 
 export default IndexProyectos
