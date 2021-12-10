@@ -161,6 +161,7 @@ const IndexProyectos = () => {
                     <th>Lider</th>
                     <th>Objetio</th>
                     <th>Editar</th>
+                    <th>Acti proyec</th>
                     <th>Incripción</th>
                   </tr>
                 </thead>
@@ -179,15 +180,17 @@ const IndexProyectos = () => {
                           <td> {u.objetivos.map((objetivo) => {
                           return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
                         })}</td>
-                          <td>
+                          <td className='py-3 px-5'>
                             <Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
-                          {u.estado == "INACTIVO" && u.fase == "NULO" ? <td className='py-3 px-4'>
+                          <td>{u.estado == "INACTIVO" && u.fase == "NULO" ? <td className='py-2 px-5'>
                             <button><i onClick={()=>{activarProyecto(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button>
-                          </td> : ""}
+                          </td> : ""}</td>
+                          <td className='py-3 px-5'> <button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
                         </tr>
                       );
                     })}

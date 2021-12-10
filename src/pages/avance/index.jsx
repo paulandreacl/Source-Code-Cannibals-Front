@@ -125,13 +125,13 @@ const IndexAvances = () => {
                 <thead className="table-green-titles">
                   <tr>
                     <th>Proyecto</th>
-                    <th>Descripción</th>
+                    <th>Avance</th>
                     <th>Creado por:</th>
-                    <th>Fecha</th>
+                    <th>Creación</th>
                     <th>Observ. 1</th>
                     <th>Observ. 2</th>
                     <th>Observ. 3</th>
-                    <th>Egreso</th>
+                    {/* <th>Egreso</th> */}
                     
                     <th>Editar</th>
                   </tr>
@@ -144,11 +144,11 @@ const IndexAvances = () => {
                           <td>{u.proyecto.nombre}</td>
                           <td>{u.descripcion}</td>
                           <td>{u.creadoPor.nombre+ " "+ u.creadoPor.apellido}</td>
-                          <td>{u.fecha}</td>
+                          <td>{!u.fecha ? '' : u.fecha.slice(0, -14)}</td>
                           <td>{u.observaciones[0]}</td>
                           <td>{u.observaciones[1]}</td>
                           <td>{u.observaciones[2]}</td>
-                          <td>{u.fecha}</td>
+                          {/* <td>{u.fecha}</td> */}
                           
                           <td>
                             <Link to={`/avances/editar/${u._id}`}>
@@ -183,13 +183,12 @@ const IndexAvances = () => {
                 <thead className="table-green-titles">
                   <tr>
                     <th>Proyecto</th>
+                    <th>Avance</th>
                     <th>Creado por:</th>
-                    <th>Fecha</th>
+                    <th>Creación</th>
                     <th>Observ. 1</th>
                     <th>Observ. 2</th>
                     <th>Observ. 3</th>
-                    <th>Egreso</th>
-                    
                     <th>Editar</th>
                   </tr>
                 </thead>
@@ -199,12 +198,12 @@ const IndexAvances = () => {
                       return (
                         <tr key={u._id}>
                           <td>{u.proyecto.nombre}</td>
+                          <td>{u.descripcion}</td>
                           <td>{u.creadoPor.nombre+ " "+ u.creadoPor.apellido}</td>
-                          <td>{u.fecha}</td>
+                          <td>{!u.fecha ? '' : u.fecha.slice(0, -14)}</td>
                           <td>{u.observaciones[0]}</td>
                           <td>{u.observaciones[1]}</td>
                           <td>{u.observaciones[2]}</td>
-                          <td>{u.fecha}</td>
                           
                           <td>
                             <Link to={`/avances/editar/${u._id}`}>

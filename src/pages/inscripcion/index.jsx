@@ -169,13 +169,12 @@ const IndexInscripciones = () => {
                           <td>{u.proyecto.nombre}</td>
                           <td>{u.estudiante.nombre+ " "+ u.estudiante.apellido}</td>
                           <td>{u.estado}</td>
-                          <td>{u.fechaIngreso}</td>
-                          <td>{u.fechaEgreso}</td>
-                          
+                          <td>{!u.fechaIngreso ? '' : u.fechaIngreso.slice(0, -14)}</td>
+                          <td>{!u.fechaEgreso ? '' : u.fechaEgreso.slice(0, -14)}</td>
                           <td className='py-3 px-4'>
-                            <Link to={`/inscripciones/aceptar/${u._id}`}>
+                            {/* <Link to={`/inscripciones/aceptar/${u._id}`}>
                               <i className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link> 
+                            </Link>  */}
                             <button><i onClick={()=>{aceptarInscripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button>
                           </td>
