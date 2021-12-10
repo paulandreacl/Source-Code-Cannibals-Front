@@ -24,12 +24,12 @@ const IndexUsuariosLider = () => {
 
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-              aria-expanded="false" aria-controls="collapseTwo">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEstudiantes"
+              aria-expanded="false" aria-controls="collapseEstudiantes">
               Consultar Estudiantes
             </button>
           </h2>
-          <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
+          <div id="collapseEstudiantes" className="accordion-collapse collapse" aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
               

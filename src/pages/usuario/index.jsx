@@ -8,6 +8,7 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import IndexUsuariosLider from './indexUsuariosLider';
 
 const IndexUsuarios = () => {
   const { data, error, loading } = useQuery(GET_USUARIOS);
@@ -154,7 +155,7 @@ const IndexUsuarios = () => {
         </div >
       </div >
 
-
+    <div><IndexUsuariosLider></IndexUsuariosLider></div>
 
 
 
