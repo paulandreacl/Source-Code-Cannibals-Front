@@ -24,7 +24,7 @@ const IndexInscripciones = () => {
     error: errorMutaton2}]=useMutation(RECHAZAR_INSCRIPCION);
 
 
-  const aceptarIncripcion = (e) => {
+  const aceptarInscripcion = (e) => {
     // console.log('Incripción Aceptada');
     let alertaUsuario=window.confirm('¿Está seguro de aceptar el usuario?');
     if (alertaUsuario) {
@@ -34,7 +34,7 @@ const IndexInscripciones = () => {
     }
   };
 
-  const rechazarIncripcion = (e) => {
+  const rechazarInscripcion = (e) => {
     // console.log('Incripción Rechazada')
     let alertaUsuario=window.confirm('¿Está seguro de aceptar el usuario?');
     if (alertaUsuario){
@@ -176,14 +176,14 @@ const IndexInscripciones = () => {
                             {/* <Link to={`/inscripciones/aceptar/${u._id}`}>
                               <i className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
                             </Link> */}
-                            <button><i onClick={()=>{aceptarIncripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                            <button><i onClick={()=>{aceptarInscripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button>
                           </td>
                           <td className='py-3 px-4'>
                             {/* <Link to={`/inscripciones/rechazar/${u._id}`}>
                               <i className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer' />
                             </Link> */}
-                            <button><i onClick={()=>(rechazarIncripcion(u))} className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer'/></button>
+                            <button><i onClick={()=>(rechazarInscripcion(u))} className='fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer'/></button>
                           </td>
                         </tr>
                       );
