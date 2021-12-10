@@ -76,7 +76,7 @@ const IndexProyectos = () => {
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
               <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Proyecto</h1>
-              <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
+              <form ref={form} onChange={updateFormData} onSubmit={submitForm} className='row g-3  items-center justify-center '>
                 <div className="col-md-3">
                   <Input
                     label='Nombre del proyecto:'
@@ -135,7 +135,7 @@ const IndexProyectos = () => {
                     <th>Estado</th>
                     <th>Fase</th>
                     <th>Lider</th>
-                    <th>Objetio</th>
+                    <th>Objetivo</th>
                     <th>Editar</th>
                   </tr>
                 </thead>
