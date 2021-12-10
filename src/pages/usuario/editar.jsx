@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { GET_USUARIO } from 'graphql/usuario/queries';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate} from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useFormData from 'hooks/useFormData';
@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
+
 
 const EditarUsuario = () => {
     const { form, formData, updateFormData } = useFormData(null);
@@ -22,6 +23,8 @@ const EditarUsuario = () => {
         variables: { _id }
     });
 
+    const  navigate =  useNavigate();
+
     const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_USUARIO);
 
@@ -31,6 +34,7 @@ const EditarUsuario = () => {
         editarUsuario({
             variables: { _id, ...formData, rol: 'ADMINISTRADOR' }
         })
+        navigate('/usuarios', { replace: true })
     };
 
     useEffect(() => {
@@ -61,6 +65,7 @@ const EditarUsuario = () => {
                 onSubmit={submitForm}
                 onChange={updateFormData}
                 ref={form}
+                
                 className='row g-3  items-center justify-center '
             >
                 <div className="col-md-3">

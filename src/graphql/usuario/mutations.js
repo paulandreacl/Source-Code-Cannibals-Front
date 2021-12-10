@@ -35,7 +35,9 @@ mutation CrearUsuario(
   $identificacion: String!,
   $correo: String!,
   $rol: Enum_Rol!,
-  $estado: Enum_EstadoUsuario) {
+  $estado: Enum_EstadoUsuario
+  
+  ) {
   crearUsuario(
     nombre: $nombre,
     apellido: $apellido,
@@ -54,4 +56,42 @@ mutation CrearUsuario(
 }
 `;
 
-export { EDITAR_USUARIO, CREAR_USUARIO };
+const REGISTRO = gql`
+  mutation registro(
+    $nombre: String!
+    $apellido: String!
+    $identificacion: String!
+    $correo: String!
+    $rol: Enum_Rol!
+    $password: String!
+  ) {
+    registro(
+      nombre: $nombre
+      apellido: $apellido
+      identificacion: $identificacion
+      correo: $correo
+      rol: $rol
+      password: $password
+    ) {
+      token
+      error
+    }
+  }
+`;
+
+const ELIMINAR_USUARIO = gql`
+mutation EliminarUsuario($id: String!) {
+  eliminarUsuario(_id: $id) {
+    _id
+    nombre
+    apellido
+    identificacion
+    correo
+    rol
+    estado
+  }
+}
+`;
+
+
+export { EDITAR_USUARIO, REGISTRO, ELIMINAR_USUARIO, CREAR_USUARIO };

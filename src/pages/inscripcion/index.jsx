@@ -173,9 +173,9 @@ const IndexInscripciones = () => {
                           <td>{u.fechaEgreso}</td>
                           
                           <td className='py-3 px-4'>
-                            {/* <Link to={`/inscripciones/aceptar/${u._id}`}>
+                            <Link to={`/inscripciones/aceptar/${u._id}`}>
                               <i className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link> */}
+                            </Link> 
                             <button><i onClick={()=>{aceptarInscripcion(u)}} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button>
                           </td>
