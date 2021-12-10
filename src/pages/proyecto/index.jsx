@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PROYECTOS } from 'graphql/proyecto/queries';
+
 import { GET_USUARIOS } from 'graphql/usuario/queries';
 import {  PROYECTO_FASE_EDITADO } from 'graphql/proyecto/mutations';
-import { Link } from 'react-router-dom';
+
+import { GET_PROYECTOS, GET_PROYECTO } from 'graphql/proyecto/queries';
+import { CREAR_INSCRIPCION  } from 'graphql/proyecto/mutations';
+import { Link, useNavigate } from 'react-router-dom';
 import './proyecto.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
@@ -54,6 +57,26 @@ const IndexProyectos = () => {
       variables: formData,
 
     });
+  };
+
+
+  // const { data: dataMutation2, loading: loadingMutation2,
+  //   error: errorMutaton2 } = useQuery(GET_PROYECTO);
+
+  const [inscribir,{data: dataMutation2, loading: loadingMutation2,
+    error: errorMutaton2}]=useMutation(CREAR_INSCRIPCION);
+  
+  const navigate=useNavigate('/inscripciones',{replace:true});
+
+  const inscripcion = (proyecto) => {
+    console.log(proyecto._id)
+     inscribir({variables:{
+       proyecto: proyecto._id,
+       estudiante:'61a83b3e5300014bdd95e3eb'   /* Warning colocar info del usuario que se registro inicialmente*/
+     }}
+     );
+     navigate('/inscripciones',{replace:true});
+     window.location.reload(true)
   };
 
 
@@ -138,6 +161,7 @@ const IndexProyectos = () => {
                     <th>Lider</th>
                     <th>Objetio</th>
                     <th>Editar</th>
+                    <th>Incripción</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -249,5 +273,7 @@ const FormObjetivo = ({ id }) => {
     </div>
   );
 };
+
+
 
 export default IndexProyectos

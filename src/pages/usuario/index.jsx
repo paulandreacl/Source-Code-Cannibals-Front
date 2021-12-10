@@ -1,7 +1,10 @@
-import React/* , { useEffect } */ from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuario/queries';
+import { CREAR_USUARIO } from 'graphql/usuario/mutations';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 import './usuario.css'
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
@@ -9,14 +12,49 @@ import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 import IndexUsuariosLider from './indexUsuariosLider';
+import { toast } from 'react-toastify';
 
 const IndexUsuarios = () => {
   const { data, error, loading } = useQuery(GET_USUARIOS);
+  const { form, formData, updateFormData } = useFormData(null);
+  const { _id } = useParams();
 
-  if (loading) return <div>Loading...</div>;
+ /*  if (loading) return <div>Loading...</div>;
 
-  if (error) return <div>Error...</div>;
+  if (error) return <div>Error...</div>; */
 
+  const {
+    loading: queryLoading,
+    error: queryError,
+    data: queryData,
+} = useQuery(GET_USUARIOS, {
+    variables: { _id }
+});
+
+  const [crearUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
+      useMutation(CREAR_USUARIO);
+
+  const submitForm = (e) => {
+      e.preventDefault();
+      console.log(formData);
+      crearUsuario({
+          variables: { _id, ...formData }
+      })
+  };
+
+  useEffect(() => {
+      if (mutationData) {
+          toast.success('Usuario creado correctamente');
+      }
+  }, [mutationData]);
+
+  useEffect(() => {
+      if (mutationError) {
+          toast.error('Error creando el usuario');
+      }
+
+      }, [mutationError]);
+      if (queryLoading) return <div>Loading...</div>;
   return (
     <div>
       <div className="accordion" id="accordionExample">
@@ -34,9 +72,9 @@ const IndexUsuarios = () => {
 
             <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Usuario</h1>
             <form
-                /* onSubmit={submitForm}
+                onSubmit={submitForm}
                 onChange={updateFormData}
-                ref={form} */
+                ref={form}
                 className='row g-3  items-center justify-center '
             >
                 <div className="col-md-3">
@@ -55,7 +93,7 @@ const IndexUsuarios = () => {
                         required={true}
                     />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-6">
                 <Input
                     label='Correo del usuario:'
                     type='email'
@@ -71,6 +109,17 @@ const IndexUsuarios = () => {
                     required={true}
                 />
                 </div>
+
+                <div className="col-md-3">
+                <DropDown
+                    label='Rol del usuario:'
+                    name='rol'
+                    required={true}
+                    options={Enum_Rol}
+                    disabled={false}
+                />
+                </div>
+
                 <div className="col-md-3">
                 <DropDown
                     label='Estado del usuario:'
@@ -81,20 +130,12 @@ const IndexUsuarios = () => {
                     disabled={true}
                 />
                 </div>
-                <div className="col-md-3">
-                <DropDown
-                    label='Rol del usuario:'
-                    name='rol'
-                    required={true}
-                    options={Enum_Rol}
-                    disabled={false}
-                />
-                </div>
+                
                 {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
                 
                 <ButtonLoading className="btn-primary"
-                    /* disabled={Object.keys(formData).length === 0}
-                    loading={mutationLoading} */
+                    disabled={Object.keys(formData).length === 0}
+                    loading={mutationLoading}
                     text='Confirmar'
                 />
             </form>

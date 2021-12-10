@@ -100,54 +100,7 @@ const IndexProyectosLider = () => {
       
       <div className="accordion" id="accordionExample">
 
-<div className="accordion-item">
-  <h2 className="accordion-header" id="headingTwo">
-    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-      aria-expanded="false" aria-controls="collapseThree">
-      Consultar Inscripciones
-    </button>
-  </h2>
-  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingTwo"
-    data-bs-parent="#accordionExample">
-    <div className="accordion-body">
-      
-      <table className='table table-hover tabla_basedatos'>
-        <thead className="table-green-titles">
-          <tr>
-            <th>Nombre</th>
-            <th>Presupuesto</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Estado</th>
-            <th>Fase</th>
-            <th>Lider</th>
-            <th>Objetivos</th>
-            <th>Detalles</th>
-            <th>Editar</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {dataIns &&
-            dataIns.Inscripciones.map((u) => {
-              return (
-                <tr key={u._id}>
-                  <td>{u.proyecto.nombre}</td>
-                  <td>{u.presupuesto}</td>
-                  <td>{u.fechaInicio}</td>
-                  
-                  
 
-                    
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-</div >
 </div >
 
 
