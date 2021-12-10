@@ -29,6 +29,7 @@ const IndexProyectos = () => {
      }}
      );
      navigate('/inscripciones',{replace:true});
+     window.location.reload(true)
   };
 
 
