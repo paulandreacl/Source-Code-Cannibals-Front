@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuario/queries';
-import { REGISTRO } from 'graphql/usuario/mutations';
+import { REGISTRO, ELIMINAR_USUARIO } from 'graphql/usuario/mutations';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -37,18 +37,37 @@ const IndexUsuarios = () => {
   const [crearUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
       useMutation(REGISTRO);
 
+  const [eliminar, {data: dataMutation2, loading: loadingMutation2,
+      error: errorMutaton2} ]=useMutation(ELIMINAR_USUARIO);
+
+  const eliminarUsuario = (e) => {
+    // console.log('Incripción Rechazada')
+    let alertaUsuario=window.confirm('¿Está seguro de eliminar el usuario?');
+    if (alertaUsuario){
+      eliminar({variables:{
+        id:e._id
+      }})
+    }
+    navigate('/usuarios', { replace: true })
+    window.location.reload(true);
+  };
+
+
   const submitForm = (e) => {
       e.preventDefault();
       console.log(formData);
       crearUsuario({
           variables: { _id, ...formData }
       })
+      window.confirm('Usuario creado satisfactoriamente');
+      navigate('/usuarios', { replace: true })
+      window.location.reload(true);
   };
   useEffect(() => {
     console.log('data mutation', mutationData);
     if (mutationData) {
       if (mutationData.registro.token) {
-        setToken(mutationData.crearUsuario.token);
+        setToken(mutationData.registro.token);
         navigate('/');
       }
     }
@@ -211,6 +230,7 @@ const IndexUsuarios = () => {
                             <Link to={`/usuarios/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
+                            <button><i onClick={()=>(eliminarUsuario(u))} className=' fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer'/></button>
                           </td>
                         </tr>
                       );

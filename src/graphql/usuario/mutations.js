@@ -79,5 +79,19 @@ const REGISTRO = gql`
   }
 `;
 
+const ELIMINAR_USUARIO = gql`
+mutation EliminarUsuario($id: String!) {
+  eliminarUsuario(_id: $id) {
+    _id
+    nombre
+    apellido
+    identificacion
+    correo
+    rol
+    estado
+  }
+}
+`;
 
-export { EDITAR_USUARIO, REGISTRO };
+
+export { EDITAR_USUARIO, REGISTRO, ELIMINAR_USUARIO };
