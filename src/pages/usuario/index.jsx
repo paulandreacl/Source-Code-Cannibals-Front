@@ -22,31 +22,33 @@ const IndexUsuarios = () => {
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
 
- /*  if (loading) return <div>Loading...</div>;
-
-  if (error) return <div>Error...</div>; */
+  /*  if (loading) return <div>Loading...</div>;
+ 
+   if (error) return <div>Error...</div>; */
 
   const {
     loading: queryLoading,
     error: queryError,
     data: queryData,
-} = useQuery(GET_USUARIOS, {
+  } = useQuery(GET_USUARIOS, {
     variables: { _id }
-});
+  });
 
   const [crearUsuario, { data: mutationData, loading: mutationLoading, error: mutationError }] =
-      useMutation(REGISTRO);
+    useMutation(REGISTRO);
 
-  const [eliminar, {data: dataMutation2, loading: loadingMutation2,
-      error: errorMutaton2} ]=useMutation(ELIMINAR_USUARIO);
+  const [eliminar, { data: dataMutation2, loading: loadingMutation2,
+    error: errorMutaton2 }] = useMutation(ELIMINAR_USUARIO);
 
   const eliminarUsuario = (e) => {
     // console.log('Incripción Rechazada')
-    let alertaUsuario=window.confirm('¿Está seguro de eliminar el usuario?');
-    if (alertaUsuario){
-      eliminar({variables:{
-        id:e._id
-      }})
+    let alertaUsuario = window.confirm('¿Está seguro de eliminar el usuario?');
+    if (alertaUsuario) {
+      eliminar({
+        variables: {
+          id: e._id
+        }
+      })
     }
     navigate('/usuarios', { replace: true })
     window.location.reload(true);
@@ -54,14 +56,14 @@ const IndexUsuarios = () => {
 
 
   const submitForm = (e) => {
-      e.preventDefault();
-      console.log(formData);
-      crearUsuario({
-          variables: { _id, ...formData }
-      })
-      window.confirm('Usuario creado satisfactoriamente');
-      navigate('/usuarios', { replace: true })
-      window.location.reload(true);
+    e.preventDefault();
+    console.log(formData);
+    crearUsuario({
+      variables: { _id, ...formData }
+    })
+    window.confirm('Usuario creado satisfactoriamente');
+    navigate('/usuarios', { replace: true })
+    window.location.reload(true);
   };
   useEffect(() => {
     console.log('data mutation', mutationData);
@@ -73,18 +75,18 @@ const IndexUsuarios = () => {
     }
   }, [mutationData, setToken, navigate]);
   useEffect(() => {
-      if (mutationData) {
-          toast.success('Usuario creado correctamente');
-      }
+    if (mutationData) {
+      toast.success('Usuario creado correctamente');
+    }
   }, [mutationData]);
 
   useEffect(() => {
-      if (mutationError) {
-          toast.error('Error creando el usuario');
-      }
+    if (mutationError) {
+      toast.error('Error creando el usuario');
+    }
 
-      }, [mutationError]);
-      if (queryLoading) return <div>Loading...</div>;
+  }, [mutationError]);
+  if (queryLoading) return <div>Loading...</div>;
   return (
     <div>
       <div className="accordion" id="accordionExample">
@@ -100,91 +102,91 @@ const IndexUsuarios = () => {
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
 
-            <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Usuario</h1>
-            <form
+              <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Agregar Usuario</h1>
+              <form
                 onSubmit={submitForm}
                 onChange={updateFormData}
                 ref={form}
                 className='row g-3  items-center justify-center '
-            >
+              >
                 <div className="col-md-3">
-                    <Input
-                        label='Nombre del usuario:'
-                        type='text'
-                        name='nombre'
-                        required={true}
-                    />
+                  <Input
+                    label='Nombre del usuario:'
+                    type='text'
+                    name='nombre'
+                    required={true}
+                  />
                 </div>
                 <div className="col-md-3">
-                    <Input
-                        label='Apellido del usuario:'
-                        type='text'
-                        name='apellido'
-                        required={true}
-                    />
+                  <Input
+                    label='Apellido del usuario:'
+                    type='text'
+                    name='apellido'
+                    required={true}
+                  />
                 </div>
 
                 <div className="col-md-3">
-                <Input
+                  <Input
                     label='Identificación del usuario:'
                     type='text'
                     name='identificacion'
                     required={true}
-                />
+                  />
                 </div>
 
                 <div class="w-100"></div>
 
                 <div className="col-md-6">
-                <Input
+                  <Input
                     label='Correo del usuario:'
                     type='email'
                     name='correo'
                     required={true}
-                />
+                  />
                 </div>
 
                 <div className="col-md-3">
-                <Input 
+                  <Input
                     label='Contraseña:'
-                    name='password' 
-                    type='password' 
-                    required={true} 
-                    />
+                    name='password'
+                    type='password'
+                    required={true}
+                  />
 
                 </div>
 
                 <div class="w-100"></div>
 
                 <div className="col-md-3">
-                <DropDown
+                  <DropDown
                     label='Rol del usuario:'
                     name='rol'
                     required={true}
                     options={Enum_Rol}
                     disabled={false}
-                />
+                  />
                 </div>
 
                 <div className="col-md-3">
-                <DropDown
+                  <DropDown
                     label='Estado del usuario:'
                     name='estado'
                     required={true}
                     defaultValue={"Pendiente"}
                     options={Enum_EstadoUsuario}
                     disabled={true}
-                />
+                  />
                 </div>
-                
+
                 {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}
-                
+
                 <ButtonLoading className="btn-primary"
-                    disabled={Object.keys(formData).length === 0}
-                    loading={mutationLoading}
-                    text='Confirmar'
+                  disabled={Object.keys(formData).length === 0}
+                  loading={mutationLoading}
+                  text='Confirmar'
                 />
-            </form>
+              </form>
             </div>
           </div>
         </div >
@@ -202,7 +204,7 @@ const IndexUsuarios = () => {
           <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              
+
               <table className='table table-hover tabla_basedatos'>
                 <thead className="table-green-titles">
                   <tr>
@@ -213,6 +215,7 @@ const IndexUsuarios = () => {
                     <th>Rol</th>
                     <th>Estado</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -226,11 +229,13 @@ const IndexUsuarios = () => {
                           <td>{u.identificacion}</td>
                           <td>{u.rol}</td>
                           <td>{u.estado}</td>
-                          <td>
+                          <td >
                             <Link to={`/usuarios/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
-                            <button><i onClick={()=>(eliminarUsuario(u))} className=' fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer'/></button>
+                          </td>
+                          <td className='text-align:center'>
+                            <button><i onClick={() => (eliminarUsuario(u))} className=' fas fa-times-circle text-red-600 hover:text-yellow-400 cursor-pointer' /></button>
                           </td>
                         </tr>
                       );
