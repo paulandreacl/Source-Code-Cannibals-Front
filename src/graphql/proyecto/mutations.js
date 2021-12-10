@@ -58,4 +58,15 @@ mutation Mutation($nombre: String!, $presupuesto: Float!, $lider: String!, $obje
 }
 `;
 
-export { EDITAR_PROYECTO, CREAR_PROYECTO };
+const PROYECTO_FASE_EDITADO = gql`
+mutation EditarEstadoProyecto($id: String!, $estado: Enum_EstadoProyecto!, $fase: Enum_FaseProyecto, $fechaInicio: Date) {
+  editarEstadoProyecto(_id: $id, estado: $estado, fase: $fase, fechaInicio: $fechaInicio) {
+    _id
+    nombre
+    fechaInicio
+    estado
+  }
+}
+`;
+
+export { EDITAR_PROYECTO, CREAR_PROYECTO, PROYECTO_FASE_EDITADO };
