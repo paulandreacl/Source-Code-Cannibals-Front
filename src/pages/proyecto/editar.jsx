@@ -113,7 +113,7 @@ const EditarProyecto = () => {
                 </div>
                 <div className="col-md-3">
                 <DropDown
-                    label='Estado del proyecto:'
+                    label='Fase del proyecto:'
                     name='fase'
                     defaultValue={queryData.Proyecto.fase}
                     required={true}
