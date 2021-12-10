@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GET_AVANCE } from 'graphql/avance/queries';
+import { GET_AVANCE_ID } from 'graphql/avance/queries';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
@@ -18,7 +18,7 @@ const EditarAvance = () => {
         loading: queryLoading,
         error: queryError,
         data: queryData,
-    } = useQuery(GET_AVANCE, {
+    } = useQuery(GET_AVANCE_ID, {
         variables: { _id }
     });
 
@@ -68,7 +68,7 @@ const EditarAvance = () => {
                     label='Nombre del proyecto:'
                     type='text'
                     name='nombre'
-                    /* defaultValue={queryData.Avance.fecha} */
+                    defaultValue={queryData.filtrarAvanceId.proyecto.nombre}
                     required={true}
                 />  
                 </div>
@@ -77,45 +77,36 @@ const EditarAvance = () => {
                     label='Creado por:'
                     type='text'
                     name='creadoPor'
-                    /* defaultValue={queryData.Avance.presupuesto} */
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Fecha:'
-                    type='date'
-                    name='fecha'
-                    /* defaultValue={queryData.Avance.fechaInicio+ 'hola'} */
+                    defaultValue={queryData.filtrarAvanceId.creadoPor.nombre+" "+queryData.filtrarAvanceId.creadoPor.apellido}
                     required={true}
                 />
                 </div>
     
-                <div className="col-md-3">
+                <div className="col-md-10">
                 <Input
                     label='Observación 1:'
                     type='text'
                     name='observacion1'
-                    /* defaultValue={queryData.Avance.estado} */
-                    required={true}  
+                    defaultValue={queryData.filtrarAvanceId.observaciones[0]}
+                    required={false}  
                 />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-10">
                 <Input
                     label='Observación 2:'
                     type='text'
                     name='observacion2'
-                    /* defaultValue={queryData.Avance.estado} */
-                    required={true}  
+                    defaultValue={queryData.filtrarAvanceId.observaciones[1]}
+                    required={false}  
                 />
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-10">
                 <Input
                     label='Observación 3:'
                     type='text'
                     name='observacion3'
-                    /* defaultValue={queryData.Avance.estado} */
-                    required={true}  
+                    defaultValue={queryData.filtrarAvanceId.observaciones[2]}
+                    required={false}  
                 />
                 </div>
 
