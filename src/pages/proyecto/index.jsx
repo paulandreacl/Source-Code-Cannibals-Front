@@ -177,8 +177,6 @@ const IndexProyectos = () => {
   );
 };
 
-export default IndexProyectos
-
 const Objetivos = () => {
   const [listaObjetivos, setListaObjetivos] = useState([]);
 
@@ -248,3 +246,5 @@ const FormObjetivo = ({ id }) => {
     </div>
   );
 };
+
+export default IndexProyectos
