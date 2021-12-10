@@ -143,6 +143,7 @@ const IndexInscripciones = () => {
                           <td>
                             <Link to={`/inscripciones/aceptar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                              <i className='fas fa-user-minus text-red-600 hover:text-red-400 cursor-pointer' />
                             </Link>
                           </td>
                           <td>
