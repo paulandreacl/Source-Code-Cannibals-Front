@@ -194,7 +194,70 @@ const IndexProyectosLider = () => {
           </div>
         </div >
       </div >
+      
+      <div className="accordion" id="accordionExample">
 
+<div className="accordion-item">
+  <h2 className="accordion-header" id="headingTwo">
+    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+      aria-expanded="false" aria-controls="collapseThree">
+      Consultar Inscripciones
+    </button>
+  </h2>
+  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingTwo"
+    data-bs-parent="#accordionExample">
+    <div className="accordion-body">
+      
+      <table className='table table-hover tabla_basedatos'>
+        <thead className="table-green-titles">
+          <tr>
+            <th>Nombre</th>
+            <th>Presupuesto</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Estado</th>
+            <th>Fase</th>
+            <th>Lider</th>
+            <th>Objetivos</th>
+            <th>Detalles</th>
+            <th>Editar</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {data &&
+            data.proyectosLiderado.map((u) => {
+              return (
+                <tr key={u._id}>
+                  <td>{u.nombre}</td>
+                  <td>{u.presupuesto}</td>
+                  <td>{u.fechaInicio}</td>
+                  <td>{u.fechaFin}</td>
+                  <td>{u.estado}</td>
+                  <td>{u.fase}</td>
+                  <td>{u.lider.nombre + ' '+ u.lider.apellido}</td>    
+                  <td> {u.objetivos.map((objetivo) => {
+                  return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
+                })}</td>                   
+                  <td><Link to={`/proyecto/${u._id}`}>
+                      <i className='far fa-eye text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                    </Link></td>
+                  {u.estado == 'ACTIVO' && <td>{
+                      <Link to={`/proyectos/editar/${u._id}`}>
+                      <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                    </Link>}</td>}
+
+                    
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div >
+</div >
 
 
 

@@ -24,6 +24,7 @@ const EditarProyecto = () => {
 
     const [editarProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_PROYECTO);
+    console.log(mutationData)
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -72,6 +73,7 @@ const EditarProyecto = () => {
                     required={true}
                 />  
                 </div>
+                
                 <div className="col-md-3">
                 <Input
                     label='Presupuesto del proyecto:'
@@ -93,7 +95,7 @@ const EditarProyecto = () => {
                 <div className="col-md-3">
                 <Input
                     label='Fecha Fin:'
-                    type='date'
+                    type='Date'
                     name='fechaFin'
                     defaultValue={!queryData.Proyecto.fechaFin ? '' : queryData.Proyecto.fechaFin.slice(0, -14)}
                     required={true}
@@ -109,7 +111,16 @@ const EditarProyecto = () => {
                     
                 />
                 </div>
-                
+                <div className="col-md-3">
+                <DropDown
+                    label='Estado del proyecto:'
+                    name='fase'
+                    defaultValue={queryData.Proyecto.fase}
+                    required={true}
+                    options={Enum_FaseProyecto}
+                    
+                />
+                </div>
                 <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading}
