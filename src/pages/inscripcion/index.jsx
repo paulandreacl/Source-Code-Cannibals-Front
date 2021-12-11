@@ -9,6 +9,8 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import IndexUsuariosLider from '../usuario/indexUsuariosLider';
+import MisInscripciones from './misInscripciones';
 
 const IndexInscripciones = () => {
   const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
@@ -152,11 +154,11 @@ const IndexInscripciones = () => {
                 <thead className="table-green-titles">
                   <tr>
                     <th>Proyecto</th>
+                    <th>Lider</th>
                     <th>Estudiante</th>
                     <th>Estado</th>
                     <th>Ingreso</th>
                     <th>Egreso</th>
-                    
                     <th>Aceptar</th>
                     <th>Rechazar</th>
                   </tr>
@@ -167,6 +169,7 @@ const IndexInscripciones = () => {
                       return (
                         <tr key={u._id}>
                           <td>{u.proyecto.nombre}</td>
+                          <td>{u.proyecto.lider.nombre}</td>
                           <td>{u.estudiante.nombre+ " "+ u.estudiante.apellido}</td>
                           <td>{u.estado}</td>
                           <td>{!u.fechaIngreso ? '' : u.fechaIngreso.slice(0, -14)}</td>
@@ -195,7 +198,9 @@ const IndexInscripciones = () => {
         </div >
       </div >
 
-
+    {/* Arthur y Andy */}
+      <div><MisInscripciones></MisInscripciones></div>
+      
 
 
 
