@@ -178,9 +178,11 @@ const IndexProyectos = () => {
                           <td>{u.estado}</td>
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
-                          <td> {u.objetivos.map((objetivo) => {
+                          <td>
+                            {u.objetivos.map((objetivo) => {
                           return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-                        })}</td>
+                        })}
+                        </td>
                           <td className='py-3 px-5'>
                             <Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
