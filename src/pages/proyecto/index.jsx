@@ -25,7 +25,7 @@ const IndexProyectos = () => {
   const { form, formData, updateFormData } = useFormData();
   const { data, error, loading } = useQuery(GET_PROYECTOS);
   const { userData } = useUser();
-
+  //console.log("Variable userData: ", userData)
   const [crearProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(CREAR_PROYECTO);
 
