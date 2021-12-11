@@ -159,10 +159,10 @@ const IndexProyectos = () => {
                     <th>Estado</th>
                     <th>Fase</th>
                     <th>Lider</th>
-                    <th>Objetio</th>
+                    <th>Objetivo</th>
                     <th>Editar</th>
                     <th>Acti proyec</th>
-                    <th>Agregar Incripción</th>
+                    <th>Agregar Inscripción</th>
                     <th>Agregar Avance</th>
                   </tr>
                 </thead>
