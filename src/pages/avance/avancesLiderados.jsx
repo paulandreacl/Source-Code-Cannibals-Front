@@ -11,36 +11,29 @@ import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 
-const MisAvances = () => {
+const AvancesLiderados = () => {
     const { data, error, loading } = useQuery(GET_AVANCES);
     console.log('informacion data', data)
     /*useEffect(() => {
       console.log(data)
     },[data]);*/
-    const {data: data1, error: error1, loading: loading1} =useQuery(GET_PROYECTOS)
-    console.log('informacion data1', data1)
-  
     
-    // if (loading ) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
   
-    // if (error) return <div>Error...</div>;
-    
-    if (loading && loading1 ) return <div>Loading...</div>;
-  
-    if (error && error1) return <div>Error...</div>;
+    if (error) return <div>Error...</div>;
     
 
   return (
     <div className="accordion" id="accordionExample">
 
     <div className="accordion-item">
-      <h2 className="accordion-header" id="headingTwo">
-        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-          aria-expanded="false" aria-controls="collapseThree">
-          Mis Avances
+      <h2 className="accordion-header" id="headingFour">
+        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+          aria-expanded="false" aria-controls="collapseFour">
+          Avances Liderados
         </button>
       </h2>
-      <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree"
+      <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour"
         data-bs-parent="#accordionExample">
         <div className="accordion-body">
           
@@ -66,7 +59,7 @@ const MisAvances = () => {
                         );
                       })} */}
               {data &&
-                data.Avances.filter((cod)=> (cod.creadoPor._id==='619f008c3562c617b240f262')).map((u) => {
+                data.Avances.filter((cod)=> (cod.proyecto.lider._id==='619f00313562c617b240f25b')).map((u) => {
                   return (
                     <tr key={u._id}>
                       <td>{u.proyecto.nombre}</td>
@@ -100,4 +93,4 @@ const MisAvances = () => {
   );
 };
 
-export default MisAvances
+export default AvancesLiderados

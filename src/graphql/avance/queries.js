@@ -10,6 +10,10 @@ query Avances {
     proyecto {
       _id
       nombre
+      lider{
+        _id
+        nombre
+      }
     }
     creadoPor {
       _id

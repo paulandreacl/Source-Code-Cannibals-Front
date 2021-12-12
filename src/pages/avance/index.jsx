@@ -9,6 +9,9 @@ import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
 import MisAvances from './misAvances';
+import AvancesLiderados from './avancesLiderados'
+import PrivateRoute from 'components/PrivateRoute';
+import PrivateComponent from 'components/PrivateComponent';
 
 const IndexAvances = () => {
   const { data, error, loading } = useQuery(GET_AVANCES);
@@ -167,9 +170,12 @@ const IndexAvances = () => {
         </div >
       </div >
 
-      <div><MisAvances></MisAvances></div>
-     
-
+      <PrivateComponent roleList={['ESTUDIANTE']}>
+        <div><MisAvances></MisAvances></div>
+      </PrivateComponent>
+      <PrivateComponent roleList={['LIDER']}>
+        <div><AvancesLiderados></AvancesLiderados></div>
+      </PrivateComponent>
 
 
 
