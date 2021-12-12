@@ -24,6 +24,10 @@ query Inscripciones {
       fechaFin
       estado
       fase
+      lider{
+        _id
+        nombre
+      }
     }
   }
 }

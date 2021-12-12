@@ -75,9 +75,11 @@ const IndexProyectosLider = () => {
                           <td>{u.estado}</td>
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' '+ u.lider.apellido}</td>    
-                          <td> {u.objetivos.map((objetivo) => {
+                          <td>
+                            {u.objetivos.map((objetivo) => {
                           return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-                        })}</td>                   
+                        })}
+                        </td>                   
                           <td><Link to={`/proyecto/${u._id}`}>
                               <i className='far fa-eye text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link></td>

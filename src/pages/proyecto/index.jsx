@@ -160,10 +160,11 @@ const IndexProyectos = () => {
                     <th>Estado</th>
                     <th>Fase</th>
                     <th>Lider</th>
-                    <th>Objetio</th>
+                    <th>Objetivo</th>
                     <th>Editar</th>
                     <th>Acti proyec</th>
-                    <th>Incripción</th>
+                    <th>Agregar Inscripción</th>
+                    <th>Agregar Avance</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -178,9 +179,11 @@ const IndexProyectos = () => {
                           <td>{u.estado}</td>
                           <td>{u.fase}</td>
                           <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
-                          <td> {u.objetivos.map((objetivo) => {
+                          <td>
+                            {u.objetivos.map((objetivo) => {
                           return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-                        })}</td>
+                        })}
+                        </td>
                           <td className='py-3 px-5'>
                             <Link to={`/proyectos/editar/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
@@ -191,6 +194,8 @@ const IndexProyectos = () => {
                             cursor-pointer'/></button>
                           </td> : ""}</td>
                           <td className='py-3 px-5'> <button><i onClick={()=>{inscripcion(u)}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                            cursor-pointer'/></button></td>
+                          <td className='py-3 px-5'> <button><i onClick={()=>{}} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button></td>
                         </tr>
                       );

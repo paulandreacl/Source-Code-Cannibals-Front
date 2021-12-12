@@ -143,7 +143,7 @@ const IndexUsuarios = () => {
           />
         </div>
 
-        <div class="w-100"></div>
+        <div className="w-100"></div>
 
         <div className="col-md-6">
           <Input
@@ -164,7 +164,7 @@ const IndexUsuarios = () => {
 
         </div>
 
-        <div class="w-100"></div>
+        <div className="w-100"></div>
 
         <div className="col-md-3">
           <DropDown

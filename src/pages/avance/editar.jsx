@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GET_AVANCE } from 'graphql/avance/queries';
+import { GET_AVANCE , GET_ONEAVANCEBYID } from 'graphql/avance/queries';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
@@ -18,12 +18,16 @@ const EditarAvance = () => {
         loading: queryLoading,
         error: queryError,
         data: queryData,
-    } = useQuery(GET_AVANCE, {
+    } = useQuery(GET_ONEAVANCEBYID, {
         variables: { _id }
-    });
+    },
+    );
+    console.log('información query', queryData)
 
     const [editarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_AVANCE);
+    
+
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -68,7 +72,16 @@ const EditarAvance = () => {
                     label='Nombre del proyecto:'
                     type='text'
                     name='nombre'
-                    /* defaultValue={queryData.Avance.fecha} */
+                    defaultValue={0}
+                    required={true}
+                />  
+                </div>
+                <div className="col-md-3">
+                <Input
+                    label='descripcion:'
+                    type='text'
+                    name='nombre'
+                    defaultValue={'descripcion kldsjaf'}
                     required={true}
                 />  
                 </div>
@@ -77,16 +90,7 @@ const EditarAvance = () => {
                     label='Creado por:'
                     type='text'
                     name='creadoPor'
-                    /* defaultValue={queryData.Avance.presupuesto} */
-                    required={true}
-                />
-                </div>
-                <div className="col-md-3">
-                <Input
-                    label='Fecha:'
-                    type='date'
-                    name='fecha'
-                    /* defaultValue={queryData.Avance.fechaInicio+ 'hola'} */
+                    defaultValue={1}
                     required={true}
                 />
                 </div>
@@ -96,7 +100,7 @@ const EditarAvance = () => {
                     label='Observación 1:'
                     type='text'
                     name='observacion1'
-                    /* defaultValue={queryData.Avance.estado} */
+                    defaultValue={1}
                     required={true}  
                 />
                 </div>
@@ -105,7 +109,7 @@ const EditarAvance = () => {
                     label='Observación 2:'
                     type='text'
                     name='observacion2'
-                    /* defaultValue={queryData.Avance.estado} */
+                    defaultValue={1}
                     required={true}  
                 />
                 </div>
@@ -114,7 +118,7 @@ const EditarAvance = () => {
                     label='Observación 3:'
                     type='text'
                     name='observacion3'
-                    /* defaultValue={queryData.Avance.estado} */
+                    defaultValue={1}
                     required={true}  
                 />
                 </div>
