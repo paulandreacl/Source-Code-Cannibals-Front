@@ -12,7 +12,7 @@ import Input from 'components/Input';
 
 const MisInscripciones = () => {
     const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
-    console.log('informacion data', data)
+    // console.log('informacion data', data)
     /*useEffect(() => {
       console.log(data)
     },[data]);*/

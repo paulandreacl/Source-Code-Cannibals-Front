@@ -8,6 +8,7 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoUsuario, Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import MisAvances from './misAvances';
 
 const IndexAvances = () => {
   const { data, error, loading } = useQuery(GET_AVANCES);
@@ -166,60 +167,8 @@ const IndexAvances = () => {
         </div >
       </div >
 
-      <div className="accordion" id="accordionExample">
-
-        <div className="accordion-item">
-          <h2 className="accordion-header" id="headingTwo">
-            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-              aria-expanded="false" aria-controls="collapseThree">
-              Mis Avances
-            </button>
-          </h2>
-          <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree"
-            data-bs-parent="#accordionExample">
-            <div className="accordion-body">
-              
-              <table className='table table-hover tabla_basedatos'>
-                <thead className="table-green-titles">
-                  <tr>
-                    <th>Proyecto</th>
-                    <th>Avance</th>
-                    <th>Creado por:</th>
-                    <th>Creación</th>
-                    <th>Observ. 1</th>
-                    <th>Observ. 2</th>
-                    <th>Observ. 3</th>
-                    <th>Editar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data &&
-                    data.Avances.map((u) => {
-                      return (
-                        <tr key={u._id}>
-                          <td>{u.proyecto.nombre}</td>
-                          <td>{u.descripcion}</td>
-                          <td>{u.creadoPor.nombre+ " "+ u.creadoPor.apellido}</td>
-                          <td>{!u.fecha ? '' : u.fecha.slice(0, -14)}</td>
-                          <td>{u.observaciones[0]}</td>
-                          <td>{u.observaciones[1]}</td>
-                          <td>{u.observaciones[2]}</td>
-                          
-                          <td>
-                            <Link to={`/avances/editar/${u._id}`}>
-                              <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                            </Link>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-
-            </div>
-          </div>
-        </div >
-      </div >
+      <div><MisAvances></MisAvances></div>
+     
 
 
 
