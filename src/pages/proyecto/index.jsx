@@ -44,7 +44,7 @@ const IndexProyectos = () => {
 
     formData.presupuesto = parseFloat(formData.presupuesto);
     formData.objetivos = Object.values(formData.objetivos);
-    formData.lider = '619f00313562c617b240f25b';
+    formData.lider = userData._id;
     console.log(formData)
     crearProyecto({
       variables: formData,
@@ -52,7 +52,13 @@ const IndexProyectos = () => {
     });
   };
 
+  useEffect(() => {
+    console.log('data mutation', mutationData);
+    if (mutationData) {
 
+      window.location.reload(true)
+    }
+  }, [mutationData]);
   // const { data: dataMutation2, loading: loadingMutation2,
   //   error: errorMutaton2 } = useQuery(GET_PROYECTO);
 
@@ -140,84 +146,84 @@ const IndexProyectos = () => {
 
 
         <PrivateComponent roleList={['ADMINISTRADOR', 'ESTUDIANTE']}>
-        <div className="accordion" id="accordionExample">
+          <div className="accordion" id="accordionExample">
 
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="headingTwo">
-              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                aria-expanded="false" aria-controls="collapseTwo">
-                Consultar Proyectos
-              </button>
-            </h2>
-            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
-              data-bs-parent="#accordionExample">
-              <div className="accordion-body">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="headingTwo">
+                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                  aria-expanded="false" aria-controls="collapseTwo">
+                  Consultar Proyectos
+                </button>
+              </h2>
+              <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div className="accordion-body">
 
-                <table className='table table-hover tabla_basedatos'>
-                  <thead className="table-green-titles">
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Presupuesto</th>
-                      <th>Inicio</th>
-                      <th>Fin</th>
-                      <th>Estado</th>
-                      <th>Fase</th>
-                      <th>Lider</th>
-                      <th>Objetivo</th>
-                      <PrivateComponent roleList={['LIDER']}>
-                        <th>Editar</th>
-                      </PrivateComponent>
-                      <PrivateComponent roleList={['ESTUDIANTE']}>
-                        <th>Agregar Inscripción</th>
-                        <th>Agregar Avance</th>
-                      </PrivateComponent>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data &&
-                      data.Proyectos.map((u) => {
-                        return (
-                          <tr key={u._id}>
-                            <td>{u.nombre}</td>
-                            <td>{u.presupuesto}</td>
-                            <td>{!u.fechaInicio ? '' : u.fechaInicio.slice(0, -14)}</td>
-                            <td>{!u.fechaFin ? '' : u.fechaFin.slice(0, -14)}</td>
-                            <td>{u.estado}</td>
-                            <td>{u.fase}</td>
-                            <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
-                            <td>
-                              {u.objetivos.map((objetivo) => {
-                                return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-                              })}
-                            </td>
-
-                            <PrivateComponent roleList={['LIDER']}>
-
-                              <td className='py-3 px-5'>
-                                <Link to={`/proyectos/editar/${u._id}`}>
-                                  <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                                </Link>
+                  <table className='table table-hover tabla_basedatos'>
+                    <thead className="table-green-titles">
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Presupuesto</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Estado</th>
+                        <th>Fase</th>
+                        <th>Lider</th>
+                        <th>Objetivo</th>
+                        <PrivateComponent roleList={['LIDER']}>
+                          <th>Editar</th>
+                        </PrivateComponent>
+                        <PrivateComponent roleList={['ESTUDIANTE']}>
+                          <th>Agregar Inscripción</th>
+                          <th>Agregar Avance</th>
+                        </PrivateComponent>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data &&
+                        data.Proyectos.map((u) => {
+                          return (
+                            <tr key={u._id}>
+                              <td>{u.nombre}</td>
+                              <td>{u.presupuesto}</td>
+                              <td>{!u.fechaInicio ? '' : u.fechaInicio.slice(0, -14)}</td>
+                              <td>{!u.fechaFin ? '' : u.fechaFin.slice(0, -14)}</td>
+                              <td>{u.estado}</td>
+                              <td>{u.fase}</td>
+                              <td>{u.lider.nombre + ' ' + u.lider.apellido}</td>
+                              <td>
+                                {u.objetivos.map((objetivo) => {
+                                  return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
+                                })}
                               </td>
 
-                            </PrivateComponent>
+                              <PrivateComponent roleList={['LIDER']}>
 
-                            <PrivateComponent roleList={['ESTUDIANTE']}>
-                              <td className='py-3 px-5'> <button><i onClick={() => { inscripcion(u) }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                                <td className='py-3 px-5'>
+                                  <Link to={`/proyectos/editar/${u._id}`}>
+                                    <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
+                                  </Link>
+                                </td>
+
+                              </PrivateComponent>
+
+                              <PrivateComponent roleList={['ESTUDIANTE']}>
+                                <td className='py-3 px-5'> <button><i onClick={() => { inscripcion(u) }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button></td>
 
-                              <td className='py-3 px-5'> <button><i onClick={() => { }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                                <td className='py-3 px-5'> <button><i onClick={() => { }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button></td>
-                            </PrivateComponent>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
+                              </PrivateComponent>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
 
+                </div>
               </div>
-            </div>
+            </div >
           </div >
-        </div >
         </PrivateComponent>
 
         <PrivateComponent roleList={['ADMINISTRADOR']}>

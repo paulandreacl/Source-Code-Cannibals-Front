@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PROYECTOS } from 'graphql/proyecto/queries';
 import { PROYECTO_FASE_EDITADO } from 'graphql/proyecto/mutations';
+
 
 const ActivarProyecto = () => {
     const { data, error, loading } = useQuery(GET_PROYECTOS);
@@ -17,6 +19,13 @@ const ActivarProyecto = () => {
             }
         });
     };
+
+    useEffect(() => {
+        console.log('data mutation', dataMutation1);
+        if (dataMutation1) {
+           window.location.reload(true)
+        }
+      }, [dataMutation1]);
 
     const Objetivo = ({ tipo, descripcion }) => {
         return (
