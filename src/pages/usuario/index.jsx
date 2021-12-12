@@ -16,6 +16,9 @@ import IndexUsuariosLider from './indexUsuariosLider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useAuth } from 'context/authContext';
+import { useUser } from 'context/userContext';
+
+
 
 const IndexUsuarios = () => {
   const { setToken } = useAuth();
@@ -23,6 +26,9 @@ const IndexUsuarios = () => {
   const { data, error, loading } = useQuery(GET_USUARIOS);
   const { form, formData, updateFormData } = useFormData(null);
   const { _id } = useParams();
+  const { userData } = useUser();
+  console.log("Userdata: ", userData.rol)
+
 
   /*  if (loading) return <div>Loading...</div>;
  

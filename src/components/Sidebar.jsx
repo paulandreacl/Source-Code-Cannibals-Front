@@ -1,19 +1,57 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useUser } from 'context/userContext';
+import { useAuth } from 'context/authContext';
+import PrivateComponent from './PrivateComponent';
+
+
 
 const SidebarLinks = () => {
+  const { userData } = useUser();
+  console.log("Userdata: ", userData.rol)
   return (
     <div>
-    <ul className='mt-12'>
-      <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-      <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user' />
-      <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-flask' />
-      <SidebarRoute to='/inscripciones' title='Inscripciones' icon='fas fa-tasks' />
-      <SidebarRoute to='/avances' title='Avances' icon='fas fa-laptop-house' />
-    </ul>
+      <h1>{userData.nombre + ' ' + userData.apellido}</h1>
+      <h1>{userData.rol}</h1>
+      <ul className='mt-12'>
+        <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
+          <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user' />
+        </PrivateComponent>
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
+          <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-flask' />
+        </PrivateComponent>
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
+          <SidebarRoute to='/inscripciones' title='Inscripciones' icon='fas fa-tasks' />
+        </PrivateComponent>
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
+          <SidebarRoute to='/avances' title='Avances' icon='fas fa-laptop-house' />
+        </PrivateComponent>
+        <Logout />
+      </ul>
     </div>
   );
 };
+
+const Logout = () => {
+  const { setToken } = useAuth();
+  const deleteToken = () => {
+    console.log('eliminar token');
+    setToken(null);
+  };
+  return (
+    <li onClick={() => deleteToken()}>
+      <NavLink to='/auth/login' className='sidebar-route text-red-700'>
+        <div className='flex items-center'>
+          <i className='fas fa-sign-out-alt' />
+          <span className='text-sm  ml-2'>Cerrar Sesión</span>
+        </div>
+      </NavLink>
+    </li>
+  );
+};
+
+
 
 const Logo = () => {
   return (
