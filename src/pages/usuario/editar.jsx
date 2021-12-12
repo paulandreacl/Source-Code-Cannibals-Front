@@ -121,7 +121,7 @@ const EditarUsuario = () => {
                     defaultValue={queryData.Usuario.rol}
                     required={true}
                     options={Enum_Rol}
-                    disabled={true}
+                    disabled={false}
                 />
                 </div>
                 {/* <span>Rol del usuario: {queryData.Usuario.rol}</span> */}

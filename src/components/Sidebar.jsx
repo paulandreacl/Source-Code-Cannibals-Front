@@ -15,16 +15,16 @@ const SidebarLinks = () => {
       <h1>{userData.rol}</h1>
       <ul className='mt-12'>
         <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
-        <PrivateComponent roleList={['ADMINISTRADOR']}>
+        <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
           <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user' />
         </PrivateComponent>
-        <PrivateComponent roleList={['ADMINISTRADOR']}>
+        <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER', 'ESTUDIANTE']}>
           <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-flask' />
         </PrivateComponent>
-        <PrivateComponent roleList={['ADMINISTRADOR']}>
+        <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
           <SidebarRoute to='/inscripciones' title='Inscripciones' icon='fas fa-tasks' />
         </PrivateComponent>
-        <PrivateComponent roleList={['ADMINISTRADOR']}>
+        <PrivateComponent roleList={['LIDER', 'ESTUDIANTE']}>
           <SidebarRoute to='/avances' title='Avances' icon='fas fa-laptop-house' />
         </PrivateComponent>
         <Logout />
