@@ -19,8 +19,11 @@ import { GET_INSCRIPCIONES } from 'graphql/inscripcion/queries';
 
 
 const IndexProyectosLider = () => {
+  const { userData } = useUser();
+  console.log(userData)
+  console.log("id del lider", userData._id)
   const { data, error, loading } = useQuery(GET_PROYECTOS_LIDERADOS, {variables:{
-      id: "619f00313562c617b240f25b"
+      id: userData._id
   }});
 
   const { data: dataIns, error: errorIns, loading:loadingIns } = useQuery(GET_INSCRIPCIONES);
