@@ -28,6 +28,7 @@ const EditarProyecto = () => {
 
     const submitForm = (e) => {
         e.preventDefault();
+        formData.presupuesto = parseFloat(formData.presupuesto);
         console.log(formData);
         editarProyecto({
             variables: { _id, ...formData }
@@ -75,13 +76,13 @@ const EditarProyecto = () => {
                 </div>
                 
                 <div className="col-md-3">
-                <Input
+                 <Input
                     label='Presupuesto del proyecto:'
-                    type='text'
+                    type='number'
                     name='presupuesto'
                     defaultValue={queryData.Proyecto.presupuesto}
                     required={true}
-                />
+                /> 
                 </div>
                 <div className="col-md-3">
                 <Input
