@@ -80,4 +80,12 @@ mutation EditarObjetivo(
 }
 `;
 
+const ELIMINAR_OBJETIVO = gql`
+  mutation Mutation($idProyecto: String!, $idObjetivo: String!) {
+    eliminarObjetivo(idProyecto: $idProyecto, idObjetivo: $idObjetivo) {
+      _id
+    }
+  }
+`;
+
 export { EDITAR_PROYECTO, CREAR_PROYECTO, PROYECTO_FASE_EDITADO, CREAR_INSCRIPCION, EDITAR_OBJETIVO };
