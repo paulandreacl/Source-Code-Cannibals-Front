@@ -9,10 +9,8 @@ mutation EditarProyecto($_id: String!, $nombre: String, $presupuesto: Float, $fe
     fechaInicio
     fechaFin
     fase
-  estado
-   
-    objetivos {
-      
+    estado   
+    objetivos {      
       descripcion
       tipo
     }
