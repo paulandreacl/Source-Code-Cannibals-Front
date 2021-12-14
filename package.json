@@ -22,7 +22,7 @@
     "web-vitals": "^1.0.1",
     "autoprefixer": "^9",
     "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "tailwindcss": "^1.8.9"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
