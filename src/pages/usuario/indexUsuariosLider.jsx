@@ -56,11 +56,11 @@ const IndexUsuariosLider = () => {
                           <td>{u.identificacion}</td>
                           <td>{u.rol}</td>
                           <td>{u.estado}</td>
-                          <td>
+                          {u.estado === 'PENDIENTE' && <td>
                             <Link to={`/usuarios/editar/estudiantes/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
-                          </td>
+                          </td>}
                         </tr>
                       );
                     })}
