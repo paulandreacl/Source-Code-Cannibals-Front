@@ -18,8 +18,8 @@ const Enum_EstadoProyecto = {
 
 const Enum_FaseProyecto = {
     INICIADO: 'Iniciado',
-    DESARROLLO: 'Terminado',
-    TERMINADO: 'Desarrollo',
+    DESARROLLO: 'Desarrollo',
+    TERMINADO: 'Terminado',
     NULO: 'Nulo'
 }
 

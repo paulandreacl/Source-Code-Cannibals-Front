@@ -4,44 +4,27 @@ import { GET_PROYECTOS } from 'graphql/proyecto/queries';
 import { PROYECTO_FASE_EDITADO } from 'graphql/proyecto/mutations';
 
 
-const ActivarProyecto = () => {
+const InactivarProyecto = () => {
     const { data, error, loading } = useQuery(GET_PROYECTOS);
-    const [activar, { data: dataMutation1, loading: loadingMutation1,
-        error: errorMutaton1 }] = useMutation(PROYECTO_FASE_EDITADO);
+    const [inactivar, { data: dataMutation, loading: loadingMutation,
+        error: errorMutaton }] = useMutation(PROYECTO_FASE_EDITADO);
 
-    const [reactivar, { data: dataMutation2, loading: loadingMutation2,
-        error: errorMutaton2 }] = useMutation(PROYECTO_FASE_EDITADO);
-
-    const activarProyecto = (e) => {
-        activar({
+    const inactivarProyecto = (e) => {
+        inactivar({
             variables: {
                 id: e._id,
-                fechaInicio: Date.now(),
-                estado: "ACTIVO",
-                fase: "INICIADO",
-            }
-        });
-    };
-
-    const reactivarProyecto = (e) => {
-        reactivar({
-            variables: {
-                id: e._id,
-                fechaFin: "",
-                estado: "ACTIVO",
+                fechaFin: Date.now(),
+                estado: "INACTIVO",
             }
         });
     };
 
     useEffect(() => {
-        console.log('data mutation', dataMutation1);
-        if (dataMutation1) {
+        console.log('data mutation', dataMutation);
+        if (dataMutation) {
             window.location.reload(true)
         }
-        if (dataMutation2) {
-            window.location.reload(true)
-        }
-    }, [dataMutation1, dataMutation2]);
+    }, [dataMutation]);
 
     const Objetivo = ({ tipo, descripcion }) => {
         return (
@@ -60,13 +43,13 @@ const ActivarProyecto = () => {
         <div className="accordion" id="accordionExample">
 
             <div className="accordion-item">
-                <h2 className="accordion-header" id="headingActivar">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseActivar"
-                        aria-expanded="false" aria-controls="collapseActivar">
-                        Proyectos Inactivos
+                <h2 className="accordion-header" id="headingInactivar">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInactivar"
+                        aria-expanded="false" aria-controls="collapseInactivar">
+                        Proyectos activos
                     </button>
                 </h2>
-                <div id="collapseActivar" className="accordion-collapse collapse" aria-labelledby="headingActivar"
+                <div id="collapseInactivar" className="accordion-collapse collapse" aria-labelledby="headingInactivar"
                     data-bs-parent="#accordionExample">
                     <div className="accordion-body table-responsive">
                         <table className='table table-hover tabla_basedatos'>
@@ -80,8 +63,8 @@ const ActivarProyecto = () => {
                                     <th>Fase</th>
                                     <th>Lider</th>
                                     <th>Objetivo</th>
-                                    <th>Activar (proyectos nuevos)</th>
-                                    <th>Reactivar</th>
+                                    <th>Inactivar</th>
+                                    <th>Finalizar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,7 +72,7 @@ const ActivarProyecto = () => {
                                     data.Proyectos.map((u) => {
                                         return (
                                             <tr key={u._id}>
-                                                {u.estado == "INACTIVO" ?
+                                                {u.estado == "ACTIVO" ?
                                                     <>
                                                         <td>{u.nombre}</td>
                                                         <td>{u.presupuesto}</td>
@@ -101,14 +84,17 @@ const ActivarProyecto = () => {
                                                         <td> {u.objetivos.map((objetivo) => {
                                                             return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
                                                         })}</td>
+
                                                         <td className='py-2 px-5'>
-                                                            {u.fase == "NULO" ?
-                                                                <button><i onClick={() => { activarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer'/></button>
-                                                                : <i className='fas fa-ban text-red-700'></i>}
+                                                            <button><i onClick={() => { inactivarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                                                                cursor-pointer'/></button>
                                                         </td>
+
+
                                                         <td className='py-2 px-5'>
-                                                            {u.fase != ["TERMINADO"] && u.fechaInicio ?
-                                                                <button><i onClick={() => { reactivarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400 cursor-pointer'/></button>
+                                                            {u.fase == "DESARROLLO" ?
+                                                                <button><i onClick={() => { inactivarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                                                                cursor-pointer'/></button>
                                                                 : <i className='fas fa-ban text-red-700'></i>}
                                                         </td>
                                                     </> : ""}
@@ -117,11 +103,12 @@ const ActivarProyecto = () => {
                                     })}
                             </tbody>
                         </table>
+
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 };
 
-export default ActivarProyecto;
+export default InactivarProyecto;

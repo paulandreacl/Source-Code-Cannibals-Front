@@ -22,6 +22,7 @@ import IndexProyectosLider from './indexLider';
 import ActivarProyecto from './activarProyecto';
 import PrivateRoute from 'components/PrivateRoute';
 import PrivateComponent from 'components/PrivateComponent';
+import InactivarProyecto from './inactivarProyecto';
 
 
 const IndexProyectos = () => {
@@ -229,6 +230,7 @@ const IndexProyectos = () => {
         <PrivateComponent roleList={['ADMINISTRADOR']}>
 
           <div> <ActivarProyecto /> </div>
+          <div> <InactivarProyecto/> </div>
 
         </PrivateComponent>
 
