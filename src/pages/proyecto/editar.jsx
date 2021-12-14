@@ -66,7 +66,7 @@ const EditarProyecto = () => {
                 ref={form}
                 className='row g-3 items-center justify-center'
             >
-                <PrivateComponent roleList='LIDER'>
+               
                 <div className="col-md-3">
                 <Input
                     label='Nombre del proyecto:'
@@ -106,7 +106,7 @@ const EditarProyecto = () => {
                     required={true}
                 />
                 </div>
-                </PrivateComponent>
+                
                 <PrivateComponent roleList='ADMINISTRADOR'>
                 <div className="col-md-3">
                 <DropDown
