@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { GET_AVANCE , GET_ONEAVANCEBYID } from 'graphql/avance/queries';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate} from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useFormData from 'hooks/useFormData';
@@ -11,6 +11,7 @@ import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enums';
 
+
 const EditarAvance = () => {
     const { form, formData, updateFormData } = useFormData(null);
     const { _id } = useParams();
@@ -20,9 +21,9 @@ const EditarAvance = () => {
         data: queryData,
     } = useQuery(GET_ONEAVANCEBYID, {
         variables: { _id }
-    },
-    );
-    console.log('información query', queryData)
+    });
+  
+    const  navigate =  useNavigate();
 
     const [editarAvance, { data: mutationData, loading: mutationLoading, error: mutationError }] =
         useMutation(EDITAR_AVANCE);
@@ -31,25 +32,27 @@ const EditarAvance = () => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log(formData, "FORM DATA AVANCE");
         editarAvance({
-            variables: { _id, ...formData }
+            variables: { _id, ...formData, rol: 'ESTUDIANTE' }
         })
+        navigate('/avances', { replace: true })
+        
     };
 
     useEffect(() => {
         if (mutationData) {
-            toast.success('Proyecto modificado correctamente');
+            toast.success('Avance modificado correctamente');
         }
     }, [mutationData]);
 
     useEffect(() => {
         if (mutationError) {
-            toast.error('Error modificando el proyecto');
+            toast.error('Error modificando el avance');
         }
 
         if (queryError) {
-            toast.error('Error consultando el proyecto');
+            toast.error('Error consultando el avance');
         }
     }, [queryError, mutationError]);
 
@@ -65,32 +68,34 @@ const EditarAvance = () => {
                 onSubmit={submitForm}
                 onChange={updateFormData}
                 ref={form}
+
                 className='row g-3 items-center justify-center'
             >
-                <div className="col-md-3">
+                {/* <div className="col-md-3">
                 <Input
                     label='Nombre del proyecto:'
                     type='text'
                     name='nombre'
-                    defaultValue={0}
+                    defaultValue={queryData.Avance.proyecto.nombre}
                     required={true}
+                    disabled
                 />  
-                </div>
+                </div> */}
                 <div className="col-md-3">
                 <Input
-                    label='descripcion:'
+                    label='Descripción:'
                     type='text'
-                    name='nombre'
-                    defaultValue={'descripcion kldsjaf'}
+                    name='descripcion'
+                    defaultValue={queryData.Avance.descripcion}
                     required={true}
                 />  
                 </div>
-                <div className="col-md-3">
+                {/* <div className="col-md-3">
                 <Input
                     label='Creado por:'
                     type='text'
                     name='creadoPor'
-                    defaultValue={1}
+                    defaultValue={queryData.Avance.creadoPor.nombre}
                     required={true}
                 />
                 </div>
@@ -100,7 +105,7 @@ const EditarAvance = () => {
                     label='Observación 1:'
                     type='text'
                     name='observacion1'
-                    defaultValue={1}
+                    defaultValue={queryData.Avance.observaciones[0]}
                     required={true}  
                 />
                 </div>
@@ -109,7 +114,7 @@ const EditarAvance = () => {
                     label='Observación 2:'
                     type='text'
                     name='observacion2'
-                    defaultValue={1}
+                    defaultValue={queryData.Avance.observaciones[1]}
                     required={true}  
                 />
                 </div>
@@ -118,10 +123,10 @@ const EditarAvance = () => {
                     label='Observación 3:'
                     type='text'
                     name='observacion3'
-                    defaultValue={1}
+                    defaultValue={queryData.Avance.observaciones[1]}
                     required={true}  
                 />
-                </div>
+                </div> */}
 
                 <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
