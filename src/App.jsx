@@ -34,7 +34,7 @@ import EditarEstudiante from 'pages/usuario/editarEstudiante';
 }) */
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://scc-back-test.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -50,7 +50,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://scc-back-test.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
 });
