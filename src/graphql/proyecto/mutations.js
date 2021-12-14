@@ -63,4 +63,21 @@ mutation CrearInscripcion($proyecto: String!, $estudiante: String!) {
 }
 `;
 
-export { EDITAR_PROYECTO, CREAR_PROYECTO, PROYECTO_FASE_EDITADO, CREAR_INSCRIPCION };
+
+const EDITAR_OBJETIVO = gql`
+mutation EditarObjetivo(
+  $idProyecto: String!
+  $indexObjetivo: Int!
+  $campos: camposObjetivo!
+) {
+  editarObjetivo(
+    idProyecto: $idProyecto
+    indexObjetivo: $indexObjetivo
+    campos: $campos
+  ) {
+    _id
+  }
+}
+`;
+
+export { EDITAR_PROYECTO, CREAR_PROYECTO, PROYECTO_FASE_EDITADO, CREAR_INSCRIPCION, EDITAR_OBJETIVO };
