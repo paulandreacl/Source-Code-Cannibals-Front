@@ -57,7 +57,7 @@ const IndexUsuariosLider = () => {
                           <td>{u.rol}</td>
                           <td>{u.estado}</td>
                           <td>
-                            <Link to={`/usuarios/editar/${u._id}`}>
+                            <Link to={`/usuarios/editar/estudiantes/${u._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link>
                           </td>
