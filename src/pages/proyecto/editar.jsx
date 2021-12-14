@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
 import { Enum_EstadoProyecto, Enum_FaseProyecto } from 'utils/enums';
+import PrivateComponent from 'components/PrivateComponent';
 
 const EditarProyecto = () => {
     const { form, formData, updateFormData } = useFormData(null);
@@ -65,6 +66,7 @@ const EditarProyecto = () => {
                 ref={form}
                 className='row g-3 items-center justify-center'
             >
+                <PrivateComponent roleList='LIDER'>
                 <div className="col-md-3">
                 <Input
                     label='Nombre del proyecto:'
@@ -86,6 +88,7 @@ const EditarProyecto = () => {
                 </div>
                 <div className="col-md-3">
                 <Input
+                    readOnly
                     label='Fecha Inicio:'
                     type='Date'
                     name='fechaInicio'
@@ -95,6 +98,7 @@ const EditarProyecto = () => {
                 </div>
                 <div className="col-md-3">
                 <Input
+                    readOnly
                     label='Fecha Fin:'
                     type='Date'
                     name='fechaFin'
@@ -102,6 +106,8 @@ const EditarProyecto = () => {
                     required={true}
                 />
                 </div>
+                </PrivateComponent>
+                <PrivateComponent roleList='ADMINISTRADOR'>
                 <div className="col-md-3">
                 <DropDown
                     label='Estado del proyecto:'
@@ -113,6 +119,7 @@ const EditarProyecto = () => {
                 />
                 </div>
                 <div className="col-md-3">
+
                 <DropDown
                     label='Fase del proyecto:'
                     name='fase'
@@ -122,6 +129,8 @@ const EditarProyecto = () => {
                     
                 />
                 </div>
+               </PrivateComponent> 
+                
                 <ButtonLoading className="btn-primary"
                     disabled={Object.keys(formData).length === 0}
                     loading={mutationLoading}
