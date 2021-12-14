@@ -75,6 +75,7 @@ const DetallesProyecto = () => {
                     label='Nombre del proyecto:'
                     type='text'
                     name='nombre'
+                    readOnly={true}
                     defaultValue={queryData.Proyecto.nombre}
                     required={true}
                 />  
@@ -84,6 +85,7 @@ const DetallesProyecto = () => {
                     label='Presupuesto del proyecto:'
                     type='text'
                     name='presupuesto'
+                    readOnly={true}
                     defaultValue={queryData.Proyecto.presupuesto}
                     required={true}
                 />
@@ -91,6 +93,7 @@ const DetallesProyecto = () => {
                 <div className="col-md-3">
                 <Input
                     label='Fecha Inicio:'
+                    readOnly={true}
                     type='Date'
                     name='fechaInicio'
                     defaultValue={!queryData.Proyecto.fechaInicio ? '' : queryData.Proyecto.fechaInicio.slice(0, -14) }
@@ -98,7 +101,9 @@ const DetallesProyecto = () => {
                 />
                 </div>
                 <div className="col-md-3">
-                <Input
+                
+                <Input   
+                    readOnly={true}                 
                     label='Fecha Fin:'
                     type='date'
                     name='fechaFin'
@@ -107,7 +112,8 @@ const DetallesProyecto = () => {
                 />
                 </div>
                 <div className="col-md-3">
-                <DropDown
+                <Input
+                    readOnly={true}
                     label='Estado del proyecto:'
                     name='estado'
                     defaultValue={queryData.Proyecto.estado}
