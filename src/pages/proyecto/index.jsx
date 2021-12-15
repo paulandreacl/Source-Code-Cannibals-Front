@@ -44,7 +44,7 @@ const IndexProyectos = () => {
 
     formData.presupuesto = parseFloat(formData.presupuesto);
     formData.objetivos = Object.values(formData.objetivos);
-    formData.lider = '619f00313562c617b240f25b';
+    formData.lider = userData._id;
     console.log(formData)
     crearProyecto({
       variables: formData,
