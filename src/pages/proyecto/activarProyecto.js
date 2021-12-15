@@ -68,7 +68,7 @@ const ActivarProyecto = () => {
                 </h2>
                 <div id="collapseActivar" className="accordion-collapse collapse" aria-labelledby="headingActivar"
                     data-bs-parent="#accordionExample">
-                    <div className="accordion-body table-responsive">
+                    <div className="accordion-body">
                         <table className='table table-hover tabla_basedatos'>
                             <thead className="table-green-titles">
                                 <tr>

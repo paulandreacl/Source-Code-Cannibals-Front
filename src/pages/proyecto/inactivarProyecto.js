@@ -51,7 +51,7 @@ const InactivarProyecto = () => {
                 </h2>
                 <div id="collapseInactivar" className="accordion-collapse collapse" aria-labelledby="headingInactivar"
                     data-bs-parent="#accordionExample">
-                    <div className="accordion-body table-responsive">
+                    <div className="accordion-body">
                         <table className='table table-hover tabla_basedatos'>
                             <thead className="table-green-titles">
                                 <tr>
