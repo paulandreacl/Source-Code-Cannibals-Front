@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
-import { EDITAR_PROYECTO } from 'graphql/proyecto/mutations';
+import { EDITAR_PROYECTO, EDITAR_OBJETIVO, ELIMINAR_OBJETIVO } from 'graphql/proyecto/mutations';
 import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import DropDown from 'components/DropDown'
@@ -141,5 +141,6 @@ const EditarProyecto = () => {
         </div>
     );
 };
+
 
 export default EditarProyecto;
