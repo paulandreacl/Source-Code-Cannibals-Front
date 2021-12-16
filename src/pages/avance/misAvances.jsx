@@ -54,9 +54,7 @@ const MisAvances = () => {
                 <th>Avance</th>
                 <th>Creado por:</th>
                 <th>Creación</th>
-                <th>Observ. 1</th>
-                <th>Observ. 2</th>
-                <th>Observ. 3</th>
+                <th>Observaciones</th>
               </tr>
             </thead>
             <tbody>
@@ -75,9 +73,7 @@ const MisAvances = () => {
                       <td>{u.descripcion}</td>
                       <td>{u.creadoPor.nombre+ " "+ u.creadoPor.apellido}</td>
                       <td>{!u.fecha ? '' : u.fecha.slice(0, -14)}</td>
-                      <td>{u.observaciones[0]}</td>
-                      <td>{u.observaciones[1]}</td>
-                      <td>{u.observaciones[2]}</td>
+                      <td>{u.observaciones}</td>
                     </tr>
                   );
                 })}

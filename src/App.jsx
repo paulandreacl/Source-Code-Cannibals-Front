@@ -18,7 +18,6 @@ import EditarUsuario from 'pages/usuario/editar';
 import EditarProyecto from 'pages/proyecto/editar';
 import AceptarInscripcion from 'pages/inscripcion/aceptar';
 import RechazarInscripcion from 'pages/inscripcion/rechazar';
-import EditarAvance from 'pages/avance/editar';
 import jwt_decode from 'jwt-decode';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
@@ -27,6 +26,8 @@ import { AuthContext } from 'context/authContext';
 import IndexProyectosLider from 'pages/proyecto/indexLider';
 import DetallesProyecto from 'pages/proyecto/detallesProyecto';
 import EditarEstudiante from 'pages/usuario/editarEstudiante';
+import CrearAvance from 'pages/avance/crear';
+import Observacion from 'pages/avance/observacion';
 
 // import PrivateRoute from 'components/PrivateRoute';
 /* const httpLink = createHttpLink ({
@@ -101,7 +102,8 @@ function App() {
                 <Route path='/proyectosLider' element={<IndexProyectosLider />} />
                 <Route path='/proyecto/:_id' element={<DetallesProyecto/>} />
                 <Route path='/usuariosLider' element={<IndexUsuariosLider/>} />
-                <Route path='/avances/editar/:_id' element={<EditarAvance />} />
+                <Route path='/avance/crear/:_id' element={<CrearAvance/>} />
+                <Route path='/avance/observaciones/:_id' element={<Observacion/>} />
                 <Route path='/usuarios/editar/estudiantes/:_id' element={<EditarEstudiante />} />
                 
               </Route>

@@ -167,9 +167,7 @@ const DetallesProyecto = () => {
                     <th>Nombre</th>
                     <th>Fecha</th>
                     <th>Creado Por</th>                    
-                    <th>Observacion 1</th>
-                    <th>Observacion 2</th>
-                    <th>Observacion 3</th>
+                    <th>Observaciones</th>
                     
                   </tr>
                 </thead>
@@ -182,9 +180,7 @@ const DetallesProyecto = () => {
                           <td>{a.descripcion}</td>
                           <td>{!a.fecha ? '' : a.fecha.slice(0, -14)}</td>
                           <td>{a.creadoPor.nombre + " " + a.creadoPor.apellido}</td>
-                          <td>{a.observaciones[0]}</td>
-                          <td>{a.observaciones[1]}</td>
-                          <td>{a.observaciones[2]}</td>
+                          <td>{a.observaciones}</td>
                           {/* <td><Link to={`/proyectos/editar/${a._id}`}>
                               <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
                             </Link></td> */}

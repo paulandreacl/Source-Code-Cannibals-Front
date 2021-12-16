@@ -209,12 +209,19 @@ const IndexProyectos = () => {
                               </PrivateComponent>
 
                               <PrivateComponent roleList={['ESTUDIANTE']}>
-                                <td className='py-3 px-5'> <button><i onClick={() => { inscripcion(u) }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
+                                {u.estado != 'INACTIVO' ?
+                                  <>
+                                    <td className='py-3 px-5'> <button><i onClick={() => { inscripcion(u) }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
                             cursor-pointer'/></button></td>
 
-                                <td className='py-3 px-5'> <button><i onClick={() => { }} className='fas fa-plus-circle text-green-600 hover:text-yellow-400
-                            cursor-pointer'/></button></td>
+                                    <td className='py-3 px-5'>
+                                      <Link to={`/avance/crear/${u._id}`}>
+                                        <i className='fas fa-plus-circle text-green-600 hover:text-yellow-400 cursor-pointer' />
+                                      </Link>
+                                    </td>
+                                  </> : ""}
                               </PrivateComponent>
+
                             </tr>
                           );
                         })}
@@ -230,7 +237,7 @@ const IndexProyectos = () => {
         <PrivateComponent roleList={['ADMINISTRADOR']}>
 
           <div> <ActivarProyecto /> </div>
-          <div> <InactivarProyecto/> </div>
+          <div> <InactivarProyecto /> </div>
 
         </PrivateComponent>
 
