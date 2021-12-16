@@ -151,6 +151,7 @@ const EditarProyecto = () => {
               <tbody>
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>
+                <td style="display:none;">{index}</td>
                 <td>{
                   <button type='button' onClick={() => setShowEditDialog(true)}>
                     <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
