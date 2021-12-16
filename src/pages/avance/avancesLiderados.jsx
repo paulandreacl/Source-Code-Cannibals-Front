@@ -10,6 +10,7 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import { useUser } from 'context/userContext';
 
 const AvancesLiderados = () => {
     const { data, error, loading } = useQuery(GET_AVANCES);
@@ -18,6 +19,9 @@ const AvancesLiderados = () => {
       console.log(data)
     },[data]);*/
     
+    const { userData } = useUser();
+    console.log('información de USERDATA', userData)
+
     if (loading) return <div>Loading...</div>;
   
     if (error) return <div>Error...</div>;
@@ -59,7 +63,7 @@ const AvancesLiderados = () => {
                         );
                       })} */}
               {data &&
-                data.Avances.filter((cod)=> (cod.proyecto.lider._id==='619f00313562c617b240f25b')).map((u) => {
+                data.Avances.filter((cod)=> (cod.proyecto.lider._id===userData._id)).map((u) => {
                   return (
                     <tr key={u._id}>
                       <td>{u.proyecto.nombre}</td>

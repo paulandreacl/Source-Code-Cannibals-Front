@@ -10,6 +10,7 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import { useUser } from 'context/userContext';
 
 const MisAvances = () => {
     const { data, error, loading } = useQuery(GET_AVANCES);
@@ -20,14 +21,16 @@ const MisAvances = () => {
     const {data: data1, error: error1, loading: loading1} =useQuery(GET_PROYECTOS)
     console.log('informacion data1', data1)
   
-    
-    // if (loading ) return <div>Loading...</div>;
+    const { userData } = useUser();
+    // console.log('información de USERDATA', userData)
+
+    if (loading ) return <div>Loading...</div>;
   
-    // if (error) return <div>Error...</div>;
+    if (error) return <div>Error...</div>;
     
-    if (loading && loading1 ) return <div>Loading...</div>;
+    // if (loading && loading1 ) return <div>Loading...</div>;
   
-    if (error && error1) return <div>Error...</div>;
+    // if (error && error1) return <div>Error...</div>;
     
 
   return (
@@ -66,7 +69,7 @@ const MisAvances = () => {
                         );
                       })} */}
               {data &&
-                data.Avances.filter((cod)=> (cod.creadoPor._id==='619f008c3562c617b240f262')).map((u) => {
+                data.Avances.filter((cod)=> (cod.creadoPor._id===userData._id)).map((u) => {
                   return (
                     <tr key={u._id}>
                       <td>{u.proyecto.nombre}</td>
