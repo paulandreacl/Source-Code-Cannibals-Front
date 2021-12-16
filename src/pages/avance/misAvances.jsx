@@ -57,7 +57,6 @@ const MisAvances = () => {
                 <th>Observ. 1</th>
                 <th>Observ. 2</th>
                 <th>Observ. 3</th>
-                <th>Editar</th>
               </tr>
             </thead>
             <tbody>
@@ -79,12 +78,6 @@ const MisAvances = () => {
                       <td>{u.observaciones[0]}</td>
                       <td>{u.observaciones[1]}</td>
                       <td>{u.observaciones[2]}</td>
-                      
-                      <td>
-                        <Link to={`/avances/editar/${u._id}`}>
-                          <i className='fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer' />
-                        </Link>
-                      </td>
                     </tr>
                   );
                 })}
