@@ -143,7 +143,7 @@ const IndexProyectos = () => {
             </div >
           </div >
 
-         
+          <div> <IndexProyectosLider /> </div>
         </PrivateComponent>
 
 
