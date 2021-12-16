@@ -30,6 +30,7 @@ const IndexProyectos = () => {
   const { data, error, loading } = useQuery(GET_PROYECTOS);
   const { userData } = useUser();
   console.log("Variable userData: ", userData.nombre)
+  console.log("peticiones de proyectos", data)
   //console.log("Variable decoded: ", decoded)
   const [crearProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(CREAR_PROYECTO);
