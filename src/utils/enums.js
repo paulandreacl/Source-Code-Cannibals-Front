@@ -34,4 +34,9 @@ const Enum_TipoObjetivo = {
     ESPECIFICO: 'Específico',
   };
 
-export { Enum_EstadoUsuario, Enum_Rol, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_EstadoInscripcion, Enum_TipoObjetivo};
+  const Enum_EstadoEstudiante = {
+    PENDIENTE: 'Pendiente',
+    AUTORIZADO: 'Autorizado',    
+};  
+
+export { Enum_EstadoUsuario, Enum_Rol, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_EstadoInscripcion, Enum_TipoObjetivo, Enum_EstadoEstudiante};
