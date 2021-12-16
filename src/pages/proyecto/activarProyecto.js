@@ -34,14 +34,9 @@ const ActivarProyecto = () => {
     };
 
     useEffect(() => {
-        console.log('data mutation', dataMutation1);
-        if (dataMutation1) {
-            window.location.reload(true)
+        if ([dataMutation1, dataMutation2]) {
         }
-        if (dataMutation2) {
-            window.location.reload(true)
-        }
-    }, [dataMutation1, dataMutation2]);
+    }, [dataMutation1, dataMutation2, data]);
 
     const Objetivo = ({ tipo, descripcion }) => {
         return (

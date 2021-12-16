@@ -2,12 +2,15 @@ import { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PROYECTOS } from 'graphql/proyecto/queries';
 import { PROYECTO_FASE_EDITADO } from 'graphql/proyecto/mutations';
+import { toast } from 'react-toastify';
 
 
 const InactivarProyecto = () => {
     const { data, error, loading } = useQuery(GET_PROYECTOS);
     const [inactivar, { data: dataMutation, loading: loadingMutation,
         error: errorMutaton }] = useMutation(PROYECTO_FASE_EDITADO);
+    const [finalizar, { data: dataMutation1, loading: loadingMutation1,
+        error: errorMutaton1 }] = useMutation(PROYECTO_FASE_EDITADO);
 
     const inactivarProyecto = (e) => {
         inactivar({
@@ -19,12 +22,21 @@ const InactivarProyecto = () => {
         });
     };
 
+    const finalizarProyecto = (e) => {
+        finalizar({
+            variables: {
+                id: e._id,
+                fechaFin: Date.now(),
+                fase: "TERMINADO",
+                estado: "INACTIVO",
+            }
+        });
+    };
+
     useEffect(() => {
-        console.log('data mutation', dataMutation);
-        if (dataMutation) {
-            window.location.reload(true)
+        if ([dataMutation, dataMutation1]) {
         }
-    }, [dataMutation]);
+    }, [dataMutation, dataMutation1, data]);
 
     const Objetivo = ({ tipo, descripcion }) => {
         return (
@@ -93,7 +105,7 @@ const InactivarProyecto = () => {
 
                                                         <td className='py-2 px-5'>
                                                             {u.fase == "DESARROLLO" ?
-                                                                <button><i onClick={() => { inactivarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400
+                                                                <button><i onClick={() => { finalizarProyecto(u) }} className='fas fa-check-circle text-green-600 hover:text-yellow-400
                                                                 cursor-pointer'/></button>
                                                                 : <i className='fas fa-ban text-red-700'></i>}
                                                         </td>
