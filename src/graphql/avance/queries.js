@@ -10,6 +10,10 @@ query Avances {
     proyecto {
       _id
       nombre
+      lider{
+        _id
+        nombre
+      }
     }
     creadoPor {
       _id
@@ -21,8 +25,8 @@ query Avances {
 `;
 
 const GET_ONEAVANCEBYID = gql`
-  query Avance($id: String!) {
-  Avance(_id: $id) {
+  query Avance($_id: String!) {
+  Avance(_id: $_id) {
     _id
     descripcion
     fecha
