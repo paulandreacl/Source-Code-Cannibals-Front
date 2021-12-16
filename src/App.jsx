@@ -35,7 +35,9 @@ import Observacion from 'pages/avance/observacion';
 }) */
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  //uri: 'http://localhost:4000/graphql',
+  uri: 'https://scc-back-test.herokuapp.com/graphql'
+
 });
 
 const authLink = setContext((_, { headers }) => {
