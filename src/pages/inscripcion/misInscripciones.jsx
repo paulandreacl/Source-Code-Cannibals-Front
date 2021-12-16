@@ -9,6 +9,7 @@ import DropDown from 'components/DropDown'
 import { Enum_EstadoInscripcion} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import Input from 'components/Input';
+import { useUser } from 'context/userContext';
 
 const MisInscripciones = () => {
     const { data, error, loading } = useQuery(GET_INSCRIPCIONES);
@@ -17,6 +18,8 @@ const MisInscripciones = () => {
       console.log(data)
     },[data]);*/
   
+    const { userData } = useUser();
+
     const [aceptar,{data: dataMutation1, loading: loadingMutation1,
       error: errorMutaton1}]=useMutation(ACEPTAR_INSCRIPCION);
     
@@ -56,7 +59,7 @@ const MisInscripciones = () => {
         <h2 className="accordion-header" id="headingThree">
           <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
             aria-expanded="false" aria-controls="collapseThree">
-            Mis Inscripciones
+            Solicitud de inscripciones a mis proyectos
           </button>
         </h2>
         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree"
@@ -79,7 +82,7 @@ const MisInscripciones = () => {
               </thead>
               <tbody>
                 {data &&
-                  data.Inscripciones.filter((cod)=> cod.proyecto.lider._id==='619f00643562c617b240f25e').map((u) => {
+                  data.Inscripciones.filter((cod)=> cod.proyecto.lider._id=== userData._id).map((u) => {
                     return (
                       <tr key={u._id}>
                         <td>{u.proyecto.nombre}</td>
