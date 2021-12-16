@@ -139,17 +139,10 @@ const EditarProyecto = () => {
                 />
                 </div>
                </PrivateComponent> 
-                
-                <ButtonLoading className="btn-primary"
-                    disabled={Object.keys(formData).length === 0}
-                    loading={mutationLoading}
-                    text='Confirmar'
-                />
-                
-            </form>
-           
-           {queryData.Proyecto.objetivos.map((objetivo) =>(
+
+               {queryData.Proyecto.objetivos.map((objetivo) =>(
                <div>
+                   <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>  
                 <table className='table table-hover tabla_basedatos'>
                     <th>Descripción</th>
                     <th>Tipo</th>
@@ -167,21 +160,39 @@ const EditarProyecto = () => {
                           </button>
                         }</td>
                         <div>
+                          
                         <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
                         <EditarObjetivo
                           descripcion={objetivo.descripcion}
                           tipo={objetivo.tipo}                          
                           idProyecto={_id}
-                          setShowEditDialog={setShowEditDialog}
-                        />
+                          index = {objetivo.index}
+                          setShowEditDia    log={setShowEditDialog}
+
+                        />  
                       </Dialog>
-                        </div>
+                        </div>  
 
                     </tbody>
                 </table>
                 </div>
            ))
            }
+                
+                <ButtonLoading className="btn-primary"
+                    disabled={Object.keys(formData).length === 0}
+                    loading={mutationLoading}
+                    text='Confirmar'
+                />
+                
+            </form>
+           {/* {queryData.Proyecto.objetivos.map((objetivo) =>(<Objetivo
+           descripcion={objetivo.descripcion}
+           tipo={objetivo.tipo}                          
+           idProyecto={_id}
+           setShowEditDialog={setShowEditDialog}
+           />))} */}
+         
            
         </div>
     );
