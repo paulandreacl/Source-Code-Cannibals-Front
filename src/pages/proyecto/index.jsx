@@ -73,7 +73,7 @@ const IndexProyectos = () => {
     inscribir({
       variables: {
         proyecto: proyecto._id,
-        estudiante: '61a83b3e5300014bdd95e3eb'   /* Warning colocar info del usuario que se registro inicialmente*/
+        estudiante: userData._id,   /* Warning colocar info del usuario que se registro inicialmente*/
       }
     }
     );
