@@ -144,7 +144,7 @@ const EditarProyecto = () => {
         <div>
           <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
           <table className='table table-hover tabla_basedatos'>
-            <th>#</th>
+            <th></th>
             <th>Descripción</th>
             <th>Tipo</th>            
             <th>Editar</th>
@@ -155,26 +155,26 @@ const EditarProyecto = () => {
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>                
                 <td>{
-                  <button type='button' onClick={() => setShowEditDialog(true)}>
-                    <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
-                  </button>
+                  <><button type='button' onClick={() => setShowEditDialog(true)}>
+                      <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
+                    </button><div>
+
+                        <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+                          <EditarObjetivo
+                            descripcion={objetivo.descripcion}
+                            tipo={objetivo.tipo}
+                            idProyecto={_id}
+                            index={index}
+                            setShowEditDialog={setShowEditDialog} />
+                        </Dialog>
+                      </div></>
                 }</td>
-                <div>
-
-<Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-  <EditarObjetivo
-    descripcion={objetivo.descripcion}
-    tipo={objetivo.tipo}
-    idProyecto={_id}
-    index={index}
-    setShowEditDialog={setShowEditDialog}
-
-  />
-</Dialog>
-</div>
-
                 </tr>
+               
+
+                 
                 
+
               </tbody>
             ))
             }
