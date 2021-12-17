@@ -150,6 +150,7 @@ const EditarProyecto = () => {
             <th>Editar</th>
             {queryData.Proyecto.objetivos.map((objetivo, index) => (
               <tbody>
+                <tr>
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>
                 <td style="visibility:hidden;">{index}</td>
@@ -158,6 +159,7 @@ const EditarProyecto = () => {
                     <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
                   </button>
                 }</td>
+                </tr>
                 <div>
 
                   <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
