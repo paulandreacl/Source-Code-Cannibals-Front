@@ -165,7 +165,7 @@ const EditarProyecto = () => {
                             descripcion={objetivo.descripcion}
                             tipo={objetivo.tipo}
                             idProyecto={_id}
-                            index={index}
+                            index={this.state.index}
                             setShowEditDialog={setShowEditDialog} />
                         </Dialog></td>
                 </tr>
