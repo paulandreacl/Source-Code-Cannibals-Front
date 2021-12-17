@@ -173,7 +173,7 @@ const EditarProyecto = () => {
     editarProyecto({
       variables: {
         _id,
-        campos: formData,
+        campos: fshskaksjka,
       },
     });
   };
