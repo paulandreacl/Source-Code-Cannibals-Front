@@ -150,21 +150,7 @@ const EditarProyecto = () => {
           </div>
         </PrivateComponent>
 
-        <ButtonLoading
-          className="btn-primary"
-          disabled={Object.keys(formData).length === 0}
-          loading={mutationLoading}
-          text="Confirmar"
-        />
-      </form>
-      {/* {queryData.Proyecto.objetivos.map((objetivo) =>(<Objetivo
-           descripcion={objetivo.descripcion}
-           tipo={objetivo.tipo}                          
-           idProyecto={_id}
-           setShowEditDialog={setShowEditDialog}
-           />))} */}
-
-      <div>
+        <div>
         <div>
           <h2 className="m-4 text-xl text-gray-800 font-bold text-center">
             Objetivos
@@ -184,7 +170,8 @@ const EditarProyecto = () => {
                       tipo={objetivo.tipo}
                       index={index}
                       idProyecto={_id}
-                    ></Objetivo>{" "}
+                      idObjetivo = {objetivo.id}
+                    ></Objetivo>
                   </td>
                 </tr>
               ))}
@@ -192,6 +179,22 @@ const EditarProyecto = () => {
           </table>
         </div>
       </div>
+
+        <ButtonLoading
+          className="btn-primary"
+          disabled={Object.keys(formData).length === 0}
+          loading={mutationLoading}
+          text="Confirmar"
+        />
+      </form>
+      {/* {queryData.Proyecto.objetivos.map((objetivo) =>(<Objetivo
+           descripcion={objetivo.descripcion}
+           tipo={objetivo.tipo}                          
+           idProyecto={_id}
+           setShowEditDialog={setShowEditDialog}
+           />))} */}
+
+      
     </div>
   );
 };
