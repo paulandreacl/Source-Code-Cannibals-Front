@@ -161,42 +161,11 @@ const EditarProyecto = () => {
             <th>Editar</th>
             <tbody>
               {queryData.Proyecto.objetivos.map(
-                      idProyecto={_id}
-                      idObjetivo = {objetivo.id}</Objetivo>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                      
 
         <ButtonLoading
           className="btn-primary"
-          disabled={Object.keys(formData).length === 0}
-          loading={mutationLoading}
-          text="Confirmar"
-        />
-      </form>
-      {/* {queryData.Proyecto.objetivos.map((objetivo) =>(<Objetivo
-           descripcion={objetivo.descripcion}
-           tipo={objetivo.tipo}                          
-           idProyecto={_id}
-           setShowEditDialog={setShowEditDialog}
-           />))} */}
-
-      
-    </div>
-  );
-};
-
-// desde acá esta añadido
-
-const FormEditProyecto = ({ _id }) => {
-  const { form, formData, updateFormData } = useFormData();
-
-  // falta capturar error de la mutacion
-  // falta toast de success
+          disabled=
   const [editarProyecto, { loading }] = useMutation(EDITAR_PROYECTO);
 
   const submitForm = (e) => {
