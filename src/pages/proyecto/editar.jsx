@@ -147,10 +147,9 @@ const EditarProyecto = () => {
             <th>Descripción</th>
             <th>Tipo</th>            
             <th>Editar</th>
-            
-            {queryData = this.state &&
-             queryData.Proyecto.objetivos.map((objetivo, index) => (
-              <tbody>
+            <tbody>
+            {queryData.Proyecto.objetivos.map((objetivo, index) => (
+             
                 <tr key={index}>                
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>                
@@ -164,7 +163,7 @@ const EditarProyecto = () => {
                             descripcion={objetivo.descripcion}
                             tipo={objetivo.tipo}
                             idProyecto={_id}
-                            index={index}
+                            index={row.index}
                             setShowEditDialog={setShowEditDialog} />
                         </Dialog>
                       </div></>
@@ -175,9 +174,10 @@ const EditarProyecto = () => {
                  
                 
 
-              </tbody>
+             
             ))
             }
+             </tbody>
           </table>
         </div>
 
