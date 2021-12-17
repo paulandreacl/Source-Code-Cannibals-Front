@@ -216,15 +216,6 @@ const EditarObjetivo = ({
       toast.success("Objetivo editado con exito");
       setShowEditDialog(false);
     }
-  }, [dataMutation, setShowEditDialog]);
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    editarObjetivo({
-      variables: {
-        idProyecto,
-        indexObjetivo: index,
-        campos: formData,
       },
     }).catch((error) => {
       toast.error("Error editando el objetivo", error);
