@@ -150,7 +150,7 @@ const EditarProyecto = () => {
             <tbody>
             {queryData.Proyecto.objetivos.map((objetivo, index) => (
             
-                <tr key={index}> 
+                <tr const key={index}> 
                 <td>{index}</td>               
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>                
