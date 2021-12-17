@@ -171,7 +171,11 @@ const EditarProyecto = () => {
                 <td>{index}</td>
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>
-                
+                <td><Objetivo
+             descripcion={objetivo.descripcion}
+             tipo={objetivo.tipo}
+             index={index}
+             idProyecto={_id}></Objetivo> </td>
 
 
               </tr>
@@ -185,11 +189,7 @@ const EditarProyecto = () => {
           </tbody>
         </table>
       </div>
-            <Objetivo
-             descripcion={descripcion}
-             tipo={tipo}
-             index={index}
-             idProyecto={idProyecto}></Objetivo> 
+            
             </div>  
 
     </div>
