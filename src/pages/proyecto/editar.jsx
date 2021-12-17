@@ -162,8 +162,7 @@ const EditarProyecto = () => {
             <tbody>
               {queryData.Proyecto.objetivos.map(
                       idProyecto={_id}
-                      idObjetivo = {objetivo.id}
-                    ></Objetivo>
+                      idObjetivo = {objetivo.id}</Objetivo>
                   </td>
                 </tr>
               ))}
