@@ -158,24 +158,27 @@ const EditarProyecto = () => {
                     <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
                   </button>
                 }</td>
-                <div>
-
-                  <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-                    <EditarObjetivo
-                      descripcion={objetivo.descripcion}
-                      tipo={objetivo.tipo}
-                      idProyecto={_id}
-                      index={index}
-                      setShowEditDialog={setShowEditDialog}
-
-                    />
-                  </Dialog>
-                </div>
+                
 
               </tbody>
+              
             ))
             }
+            
           </table>
+          <div>
+
+          <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+  <EditarObjetivo
+    descripcion={objetivo.descripcion}
+    tipo={objetivo.tipo}
+    idProyecto={_id}
+    index={index}
+    setShowEditDialog={setShowEditDialog}
+
+  />
+</Dialog>
+</div>
         </div>
 
 
