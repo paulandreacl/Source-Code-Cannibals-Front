@@ -148,17 +148,15 @@ const EditarProyecto = () => {
             <th>Tipo</th>            
             <th>Editar</th>
             <tbody>
-            {this.state.queryData.Proyecto.objetivos.map((objetivo, index) => (
+            {queryData.Proyecto.objetivos.map((objetivo, index) => (
              
                 <tr key={index}>                
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>                
                 <td>{
-                  <><button type='button' onClick={() => setShowEditDialog(true)}>
+                   <button type='button' onClick={() => setShowEditDialog(true)}>
                       <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
-                    </button><div>
-
-                        <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+                      <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
                           <EditarObjetivo
                             descripcion={objetivo.descripcion}
                             tipo={objetivo.tipo}
@@ -166,7 +164,7 @@ const EditarProyecto = () => {
                             index={index}
                             setShowEditDialog={setShowEditDialog} />
                         </Dialog>
-                      </div></>
+                    </button>
                 }</td>
                 </tr>
                
