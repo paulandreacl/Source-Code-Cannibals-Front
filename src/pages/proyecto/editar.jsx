@@ -160,15 +160,7 @@ const EditarProyecto = () => {
             <th>Tipo</th>
             <th>Editar</th>
             <tbody>
-              {queryData.Proyecto.objetivos.map((objetivo, index) => (
-                <tr const key={index}>
-                  <td>{objetivo.descripcion}</td>
-                  <td>{objetivo.tipo}</td>
-                  <td>
-                    <Objetivo
-                      descripcion={objetivo.descripcion}
-                      tipo={objetivo.tipo}
-                      index={key}
+              {queryData.Proyecto.objetivos.map(
                       idProyecto={_id}
                       idObjetivo = {objetivo.id}
                     ></Objetivo>
