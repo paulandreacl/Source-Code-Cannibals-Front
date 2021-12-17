@@ -192,7 +192,9 @@ const EditarProyecto = () => {
            tipo={objetivo.tipo}                          
            idProyecto={_id}
            setShowEditDialog={setShowEditDialog}
-           />))} */}
+           />))} 
+           
+      comentrio pra hcer pull request despues*/}
 
       
     </div>
