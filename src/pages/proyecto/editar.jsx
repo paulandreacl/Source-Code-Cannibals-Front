@@ -148,7 +148,7 @@ const EditarProyecto = () => {
             <th>Tipo</th>            
             <th>Editar</th>
             <tbody>
-            {queryData.Proyecto.objetivos.map((objetivo, index) => (
+            {this.state.queryData.Proyecto.objetivos.map((objetivo, index) => (
              
                 <tr key={index}>                
                 <td>{objetivo.descripcion}</td>
