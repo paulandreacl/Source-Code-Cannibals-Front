@@ -168,7 +168,7 @@ const EditarProyecto = () => {
                     <Objetivo
                       descripcion={objetivo.descripcion}
                       tipo={objetivo.tipo}
-                      index={index}
+                      index={key}
                       idProyecto={_id}
                       idObjetivo = {objetivo.id}
                     ></Objetivo>
