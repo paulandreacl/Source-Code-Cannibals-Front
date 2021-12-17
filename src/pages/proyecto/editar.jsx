@@ -68,11 +68,7 @@ const EditarProyecto = () => {
   if (queryLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flew flex-col w-full h-full items-center justify-center p-10">
-      <Link to="/proyectos">
-        <i className="fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900" />
-      </Link>
-      <h1 className="m-4 text-3xl text-gray-800 font-bold text-center">
+    ext-3xl text-gray-800 font-bold text-center">
         Editar Proyecto
       </h1>
       <form
@@ -160,28 +156,12 @@ const EditarProyecto = () => {
             <th>Tipo</th>
             <th>Editar</th>
             <tbody>
-              {queryData.Proyecto.objetivos.map((objetivo, index) => (
-                <tr const key={index}>
-                  <td>{objetivo.descripcion}</td>
-                  <td>{objetivo.tipo}</td>
-                  <td>
-                    <Objetivo
-                      descripcion={objetivo.descripcion}
-                      tipo={objetivo.tipo}
-                      index={index}
-                      idProyecto={_id}
-                      idObjetivo = {objetivo.id}
-                    ></Objetivo>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+              {queryData.Proyecto.objetivos.map(
+                      
 
         <ButtonLoading
           className="btn-primary"
+espaldoDespliegueDic16
           disabled={Object.keys(formData).length === 0}
           loading={mutationLoading}
           text="Confirmar"
@@ -208,6 +188,9 @@ const FormEditProyecto = ({ _id }) => {
 
   // falta capturar error de la mutacion
   // falta toast de success
+
+          disabled=
+pruebasCI
   const [editarProyecto, { loading }] = useMutation(EDITAR_PROYECTO);
 
   const submitForm = (e) => {
@@ -215,59 +198,6 @@ const FormEditProyecto = ({ _id }) => {
     editarProyecto({
       variables: {
         _id,
-        campos: formData,
-      },
-    });
-  };
-
-  return (
-    <div className="p-4">
-      <h1 className="font-bold">Modificar Estado del Proyecto</h1>
-      <form
-        ref={form}
-        onChange={updateFormData}
-        onSubmit={submitForm}
-        className="flex flex-col items-center"
-      >
-        <DropDown
-          label="Estado del Proyecto"
-          name="estado"
-          options={Enum_EstadoProyecto}
-        />
-        <ButtonLoading disabled={false} loading={loading} text="Confirmar" />
-      </form>
-    </div>
-  );
-};
-
-const Objetivo = ({ index, _id, idProyecto, tipo, descripcion }) => {
-  const [showEditDialog, setShowEditDialog] = useState(false);
-  const [
-    eliminarObjetivo,
-    { data: dataMutationEliminar, loading: eliminarLoading },
-  ] = useMutation(EDITAR_OBJETIVO, {
-    refetchQueries: [{ query: GET_PROYECTO }],
-  });
-
-  useEffect(() => {
-    if (dataMutationEliminar) {
-      toast.success("objetivo eliminado satisfactoriamente");
-    }
-  }, [dataMutationEliminar]);
-
-  const ejecutarEliminacion = () => {
-    eliminarObjetivo({ variables: { idProyecto, idObjetivo: _id } });
-  };
-
-  if (eliminarLoading)
-    return (
-      <ReactLoading
-        data-testid="loading-in-button"
-        type="spin"
-        height={100}
-        width={100}
-      />
-    );
   return (
     <>
       <div>
@@ -311,15 +241,6 @@ const EditarObjetivo = ({
       toast.success("Objetivo editado con exito");
       setShowEditDialog(false);
     }
-  }, [dataMutation, setShowEditDialog]);
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    editarObjetivo({
-      variables: {
-        idProyecto,
-        indexObjetivo: index,
-        campos: formData,
       },
     }).catch((error) => {
       toast.error("Error editando el objetivo", error);
