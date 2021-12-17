@@ -140,14 +140,16 @@ const EditarProyecto = () => {
           </div>
         </PrivateComponent>
 
-
+        
         <div>
           <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
           <table className='table table-hover tabla_basedatos'>            
             <th>Descripción</th>
             <th>Tipo</th>            
             <th>Editar</th>
-            {queryData.Proyecto.objetivos.map((objetivo, index) => (
+            
+            {queryData = this.state &&
+             queryData.Proyecto.objetivos.map((objetivo, index) => (
               <tbody>
                 <tr key={index}>                
                 <td>{objetivo.descripcion}</td>
