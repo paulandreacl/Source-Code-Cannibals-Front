@@ -158,13 +158,7 @@ const EditarProyecto = () => {
                     <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
                   </button>
                 }</td>
-                
-
-              </tbody>
-              
-            ))
-            }
-            <div>
+                <div>
 
                   <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
                     <EditarObjetivo
@@ -177,6 +171,10 @@ const EditarProyecto = () => {
                     />
                   </Dialog>
                 </div>
+
+              </tbody>
+            ))
+            }
           </table>
         </div>
 
