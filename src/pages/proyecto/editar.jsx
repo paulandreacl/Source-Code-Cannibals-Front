@@ -143,15 +143,13 @@ const EditarProyecto = () => {
 
         <div>
           <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
-          <table className='table table-hover tabla_basedatos'>
-            <th></th>
+          <table className='table table-hover tabla_basedatos'>            
             <th>Descripción</th>
             <th>Tipo</th>            
             <th>Editar</th>
             {queryData.Proyecto.objetivos.map((objetivo, index) => (
               <tbody>
-                <tr>
-                <td>{index+1}</td>  
+                <tr key={index}>                
                 <td>{objetivo.descripcion}</td>
                 <td>{objetivo.tipo}</td>                
                 <td>{
