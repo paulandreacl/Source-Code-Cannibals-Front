@@ -164,21 +164,20 @@ const EditarProyecto = () => {
               
             ))
             }
-            
+            <div>
+
+                  <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+                    <EditarObjetivo
+                      descripcion={objetivo.descripcion}
+                      tipo={objetivo.tipo}
+                      idProyecto={_id}
+                      index={index}
+                      setShowEditDialog={setShowEditDialog}
+
+                    />
+                  </Dialog>
+                </div>
           </table>
-          <div>
-
-          <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-  <EditarObjetivo
-    descripcion={objetivo.descripcion}
-    tipo={objetivo.tipo}
-    idProyecto={_id}
-    index={index}
-    setShowEditDialog={setShowEditDialog}
-
-  />
-</Dialog>
-</div>
         </div>
 
 
