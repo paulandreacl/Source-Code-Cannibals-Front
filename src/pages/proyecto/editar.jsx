@@ -148,33 +148,42 @@ const EditarProyecto = () => {
             <th>Tipo</th>            
             <th>Editar</th>
             <tbody>
-            {queryData.Proyecto.objetivos.map((index) =>  {
+            {queryData.Proyecto.objetivos.map((objetivo, index) => (
             
-            <tr const key={index}> 
-            {queryData.Proyecto.objetivos.map((objetivo) => {
-                 <><td>{index}</td><td>{objetivo.descripcion}</td><td>{objetivo.tipo}</td><td>{<button type='button' onClick={() => setShowEditDialog(true)}>
-                    <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
+                <tr const key={index}> 
+                <td>{index}</td>               
+                <td>{objetivo.descripcion}</td>
+                <td>{objetivo.tipo}</td>                
+                <td>{
+                   <button type='button' onClick={() => setShowEditDialog(true)}>
+                      <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
+                      
+                    </button>
+                }</td>
+                <td><Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+                          <EditarObjetivo
+                            descripcion={objetivo.descripcion}
+                            tipo={objetivo.tipo}
+                            idProyecto={_id}
+                            index={index}
+                            setShowEditDialog={setShowEditDialog} />
+                        </Dialog></td>
+                        <Objetivo descripcion={objetivo.descripcion}
+                            tipo={objetivo.tipo}
+                            idProyecto={_id}
+                            index={index}
+                            setShowEditDialog={setShowEditDialog}>
 
-                </button>}</td><td><Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-                    <EditarObjetivo
-                        descripcion={objetivo.descripcion}
-                        tipo={objetivo.tipo}
-                        idProyecto={_id}
-                        index={index}
-                        setShowEditDialog={setShowEditDialog} />
-                </Dialog></td></>
-            })
-               
-               
-            }</tr>
+                        </Objetivo>
+                </tr>
                
 
                  
                 
 
              
-            
-            })}
+            ))
+            }
              </tbody>
           </table>
         </div>
