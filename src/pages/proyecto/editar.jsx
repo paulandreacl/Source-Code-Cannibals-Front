@@ -173,59 +173,6 @@ const EditarProyecto = () => {
     editarProyecto({
       variables: {
         _id,
-        campos: fshskaksjka,
-      },
-    });
-  };
-
-  return (
-    <div className="p-4">
-      <h1 className="font-bold">Modificar Estado del Proyecto</h1>
-      <form
-        ref={form}
-        onChange={updateFormData}
-        onSubmit={submitForm}
-        className="flex flex-col items-center"
-      >
-        <DropDown
-          label="Estado del Proyecto"
-          name="estado"
-          options={Enum_EstadoProyecto}
-        />
-        <ButtonLoading disabled={false} loading={loading} text="Confirmar" />
-      </form>
-    </div>
-  );
-};
-
-const Objetivo = ({ index, _id, idProyecto, tipo, descripcion }) => {
-  const [showEditDialog, setShowEditDialog] = useState(false);
-  const [
-    eliminarObjetivo,
-    { data: dataMutationEliminar, loading: eliminarLoading },
-  ] = useMutation(EDITAR_OBJETIVO, {
-    refetchQueries: [{ query: GET_PROYECTO }],
-  });
-
-  useEffect(() => {
-    if (dataMutationEliminar) {
-      toast.success("objetivo eliminado satisfactoriamente");
-    }
-  }, [dataMutationEliminar]);
-
-  const ejecutarEliminacion = () => {
-    eliminarObjetivo({ variables: { idProyecto, idObjetivo: _id } });
-  };
-
-  if (eliminarLoading)
-    return (
-      <ReactLoading
-        data-testid="loading-in-button"
-        type="spin"
-        height={100}
-        width={100}
-      />
-    );
   return (
     <>
       <div>
