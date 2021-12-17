@@ -144,16 +144,16 @@ const EditarProyecto = () => {
         <div>
           <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
           <table className='table table-hover tabla_basedatos'>
+            <th>#</th>
             <th>Descripción</th>
-            <th>Tipo</th>
-            <th> <div style="display:none">Indice</div></th>
+            <th>Tipo</th>            
             <th>Editar</th>
             {queryData.Proyecto.objetivos.map((objetivo, index) => (
               <tbody>
                 <tr>
+                <td>{index+1}</td>  
                 <td>{objetivo.descripcion}</td>
-                <td>{objetivo.tipo}</td>
-                <td> <div style="display:none">{index}</div></td>
+                <td>{objetivo.tipo}</td>                
                 <td>{
                   <button type='button' onClick={() => setShowEditDialog(true)}>
                     <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
