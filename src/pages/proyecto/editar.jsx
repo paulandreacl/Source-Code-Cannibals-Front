@@ -146,6 +146,7 @@ const EditarProyecto = () => {
           <table className='table table-hover tabla_basedatos'>
             <th>Descripción</th>
             <th>Tipo</th>
+            <td style="display:none;">No visible</td>
             <th>Editar</th>
             {queryData.Proyecto.objetivos.map((objetivo, index) => (
               <tbody>
