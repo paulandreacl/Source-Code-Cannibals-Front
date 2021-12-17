@@ -141,52 +141,6 @@ const EditarProyecto = () => {
         </PrivateComponent>
 
         
-        <div>
-          <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
-          <table className='table table-hover tabla_basedatos'>            
-            <th>Descripción</th>
-            <th>Tipo</th>            
-            <th>Editar</th>
-            <tbody>
-            {queryData.Proyecto.objetivos.map((objetivo, index) => (
-            
-                <tr const key={index}> 
-                <td>{index}</td>               
-                <td>{objetivo.descripcion}</td>
-                <td>{objetivo.tipo}</td>                
-                <td>{
-                   <button type='button' onClick={() => setShowEditDialog(true)}>
-                      <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
-                      
-                    </button>
-                }</td>
-                <td><Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-                          <EditarObjetivo
-                            descripcion={objetivo.descripcion}
-                            tipo={objetivo.tipo}
-                            idProyecto={_id}
-                            index={index}
-                            setShowEditDialog={setShowEditDialog} />
-                        </Dialog></td>
-                        <Objetivo descripcion={objetivo.descripcion}
-                            tipo={objetivo.tipo}
-                            idProyecto={_id}
-                            index={index}
-                            setShowEditDialog={setShowEditDialog}>
-
-                        </Objetivo>
-                </tr>
-               
-
-                 
-                
-
-             
-            ))
-            }
-             </tbody>
-          </table>
-        </div>
 
 
         <ButtonLoading className="btn-primary"
@@ -203,6 +157,40 @@ const EditarProyecto = () => {
            setShowEditDialog={setShowEditDialog}
            />))} */}
 
+          <div>
+          <div>
+        <h2 className='m-4 text-xl text-gray-800 font-bold text-center'>Objetivos</h2>
+        <table className='table table-hover tabla_basedatos'>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Editar</th>
+          <tbody>
+            {queryData.Proyecto.objetivos.map((objetivo, index) => (
+
+              <tr const key={index}>
+                <td>{index}</td>
+                <td>{objetivo.descripcion}</td>
+                <td>{objetivo.tipo}</td>
+                
+
+
+              </tr>
+
+
+
+
+
+
+            ))}
+          </tbody>
+        </table>
+      </div>
+            <Objetivo
+             descripcion={descripcion}
+             tipo={tipo}
+             index={index}
+             idProyecto={idProyecto}></Objetivo> 
+            </div>  
 
     </div>
   );
@@ -277,29 +265,25 @@ const Objetivo = ({ index, _id, idProyecto, tipo, descripcion }) => {
       />
     );
   return (
-    <div className='mx-5 my-4 bg-gray-50 p-8 rounded-lg flex flex-col items-center justify-center shadow-xl'>
-      <div className='text-lg font-bold'>{tipo}</div>
-      <div>{descripcion}</div>
-      <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
-        <div className='flex my-2'>
-          <button type='button' onClick={() => setShowEditDialog(true)}>
-            <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
-          </button>
-          <button type='button' onClick={ejecutarEliminacion}>
-            <i className='fas fa-trash mx-2 text-red-500 hover:text-red-200 cursor-pointer' />
-          </button>
-        </div>
-        <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
-          <EditarObjetivo
-            descripcion={descripcion}
-            tipo={tipo}
-            index={index}
-            idProyecto={idProyecto}
-            setShowEditDialog={setShowEditDialog}
-          />
-        </Dialog>
-      </PrivateComponent>
-    </div>
+   <><div>
+      <div className='flex my-2'>
+        <button type='button' onClick={() => setShowEditDialog(true)}>
+          <i className='fas fa-pen mx-2 text-yellow-500 hover:text-yellow-200 cursor-pointer' />
+        </button>
+
+      </div>
+      <Dialog open={showEditDialog} onClose={() => setShowEditDialog(false)}>
+        <EditarObjetivo
+          descripcion={descripcion}
+          tipo={tipo}
+          index={index}
+          idProyecto={idProyecto}
+          setShowEditDialog={setShowEditDialog} />
+      </Dialog>
+      </div>
+   
+      </>
+    
   );
 };
 
