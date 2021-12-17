@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ featureDic16Unido ]
+    branches: [ featuresDic16Unido ]
   pull_request:
-    branches: [ featureDic16Unido ]
+    branches: [ featuresDic16Unido ]
 
 jobs:
   build:
@@ -21,7 +21,6 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install dependencies
-        run: yarn --frozen-lockfile
       - run: yarn install
       - run: yarn run test
       - run: yarn start
